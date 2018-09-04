@@ -1,47 +1,39 @@
 --  This spec has been automatically generated from STM32F40x.svd
---  see https://github.com/simonjwright/svd2ada
 
 pragma Restrictions (No_Elaboration_Code);
 pragma Ada_2012;
+pragma Style_Checks (Off);
 
+with HAL;
 with System;
 
-package STM32F40x.FLASH is
+package STM32_SVD.FLASH is
    pragma Preelaborate;
 
    ---------------
    -- Registers --
    ---------------
 
-   ------------------
-   -- ACR_Register --
-   ------------------
-
-   subtype ACR_LATENCY_Field is STM32F40x.UInt3;
-   subtype ACR_PRFTEN_Field is STM32F40x.Bit;
-   subtype ACR_ICEN_Field is STM32F40x.Bit;
-   subtype ACR_DCEN_Field is STM32F40x.Bit;
-   subtype ACR_ICRST_Field is STM32F40x.Bit;
-   subtype ACR_DCRST_Field is STM32F40x.Bit;
+   subtype ACR_LATENCY_Field is HAL.UInt3;
 
    --  Flash access control register
    type ACR_Register is record
       --  Latency
       LATENCY        : ACR_LATENCY_Field := 16#0#;
       --  unspecified
-      Reserved_3_7   : STM32F40x.UInt5 := 16#0#;
+      Reserved_3_7   : HAL.UInt5 := 16#0#;
       --  Prefetch enable
-      PRFTEN         : ACR_PRFTEN_Field := 16#0#;
+      PRFTEN         : Boolean := False;
       --  Instruction cache enable
-      ICEN           : ACR_ICEN_Field := 16#0#;
+      ICEN           : Boolean := False;
       --  Data cache enable
-      DCEN           : ACR_DCEN_Field := 16#0#;
+      DCEN           : Boolean := False;
       --  Write-only. Instruction cache reset
-      ICRST          : ACR_ICRST_Field := 16#0#;
+      ICRST          : Boolean := False;
       --  Data cache reset
-      DCRST          : ACR_DCRST_Field := 16#0#;
+      DCRST          : Boolean := False;
       --  unspecified
-      Reserved_13_31 : STM32F40x.UInt19 := 16#0#;
+      Reserved_13_31 : HAL.UInt19 := 16#0#;
    end record
      with Volatile_Full_Access, Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -57,40 +49,28 @@ package STM32F40x.FLASH is
       Reserved_13_31 at 0 range 13 .. 31;
    end record;
 
-   -----------------
-   -- SR_Register --
-   -----------------
-
-   subtype SR_EOP_Field is STM32F40x.Bit;
-   subtype SR_OPERR_Field is STM32F40x.Bit;
-   subtype SR_WRPERR_Field is STM32F40x.Bit;
-   subtype SR_PGAERR_Field is STM32F40x.Bit;
-   subtype SR_PGPERR_Field is STM32F40x.Bit;
-   subtype SR_PGSERR_Field is STM32F40x.Bit;
-   subtype SR_BSY_Field is STM32F40x.Bit;
-
    --  Status register
    type SR_Register is record
       --  End of operation
-      EOP            : SR_EOP_Field := 16#0#;
+      EOP            : Boolean := False;
       --  Operation error
-      OPERR          : SR_OPERR_Field := 16#0#;
+      OPERR          : Boolean := False;
       --  unspecified
-      Reserved_2_3   : STM32F40x.UInt2 := 16#0#;
+      Reserved_2_3   : HAL.UInt2 := 16#0#;
       --  Write protection error
-      WRPERR         : SR_WRPERR_Field := 16#0#;
+      WRPERR         : Boolean := False;
       --  Programming alignment error
-      PGAERR         : SR_PGAERR_Field := 16#0#;
+      PGAERR         : Boolean := False;
       --  Programming parallelism error
-      PGPERR         : SR_PGPERR_Field := 16#0#;
+      PGPERR         : Boolean := False;
       --  Programming sequence error
-      PGSERR         : SR_PGSERR_Field := 16#0#;
+      PGSERR         : Boolean := False;
       --  unspecified
-      Reserved_8_15  : STM32F40x.Byte := 16#0#;
+      Reserved_8_15  : HAL.UInt8 := 16#0#;
       --  Read-only. Busy
-      BSY            : SR_BSY_Field := 16#0#;
+      BSY            : Boolean := False;
       --  unspecified
-      Reserved_17_31 : STM32F40x.UInt15 := 16#0#;
+      Reserved_17_31 : HAL.UInt15 := 16#0#;
    end record
      with Volatile_Full_Access, Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -108,48 +88,37 @@ package STM32F40x.FLASH is
       Reserved_17_31 at 0 range 17 .. 31;
    end record;
 
-   -----------------
-   -- CR_Register --
-   -----------------
-
-   subtype CR_PG_Field is STM32F40x.Bit;
-   subtype CR_SER_Field is STM32F40x.Bit;
-   subtype CR_MER_Field is STM32F40x.Bit;
-   subtype CR_SNB_Field is STM32F40x.UInt4;
-   subtype CR_PSIZE_Field is STM32F40x.UInt2;
-   subtype CR_STRT_Field is STM32F40x.Bit;
-   subtype CR_EOPIE_Field is STM32F40x.Bit;
-   subtype CR_ERRIE_Field is STM32F40x.Bit;
-   subtype CR_LOCK_Field is STM32F40x.Bit;
+   subtype CR_SNB_Field is HAL.UInt4;
+   subtype CR_PSIZE_Field is HAL.UInt2;
 
    --  Control register
    type CR_Register is record
       --  Programming
-      PG             : CR_PG_Field := 16#0#;
+      PG             : Boolean := False;
       --  Sector Erase
-      SER            : CR_SER_Field := 16#0#;
+      SER            : Boolean := False;
       --  Mass Erase
-      MER            : CR_MER_Field := 16#0#;
+      MER            : Boolean := False;
       --  Sector number
       SNB            : CR_SNB_Field := 16#0#;
       --  unspecified
-      Reserved_7_7   : STM32F40x.Bit := 16#0#;
+      Reserved_7_7   : HAL.Bit := 16#0#;
       --  Program size
       PSIZE          : CR_PSIZE_Field := 16#0#;
       --  unspecified
-      Reserved_10_15 : STM32F40x.UInt6 := 16#0#;
+      Reserved_10_15 : HAL.UInt6 := 16#0#;
       --  Start
-      STRT           : CR_STRT_Field := 16#0#;
+      STRT           : Boolean := False;
       --  unspecified
-      Reserved_17_23 : STM32F40x.UInt7 := 16#0#;
+      Reserved_17_23 : HAL.UInt7 := 16#0#;
       --  End of operation interrupt enable
-      EOPIE          : CR_EOPIE_Field := 16#0#;
+      EOPIE          : Boolean := False;
       --  Error interrupt enable
-      ERRIE          : CR_ERRIE_Field := 16#0#;
+      ERRIE          : Boolean := False;
       --  unspecified
-      Reserved_26_30 : STM32F40x.UInt5 := 16#0#;
+      Reserved_26_30 : HAL.UInt5 := 16#0#;
       --  Lock
-      LOCK           : CR_LOCK_Field := 16#1#;
+      LOCK           : Boolean := True;
    end record
      with Volatile_Full_Access, Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -170,41 +139,32 @@ package STM32F40x.FLASH is
       LOCK           at 0 range 31 .. 31;
    end record;
 
-   --------------------
-   -- OPTCR_Register --
-   --------------------
-
-   subtype OPTCR_OPTLOCK_Field is STM32F40x.Bit;
-   subtype OPTCR_OPTSTRT_Field is STM32F40x.Bit;
-   subtype OPTCR_BOR_LEV_Field is STM32F40x.UInt2;
-   subtype OPTCR_WDG_SW_Field is STM32F40x.Bit;
-   subtype OPTCR_nRST_STOP_Field is STM32F40x.Bit;
-   subtype OPTCR_nRST_STDBY_Field is STM32F40x.Bit;
-   subtype OPTCR_RDP_Field is STM32F40x.Byte;
-   subtype OPTCR_nWRP_Field is STM32F40x.UInt12;
+   subtype OPTCR_BOR_LEV_Field is HAL.UInt2;
+   subtype OPTCR_RDP_Field is HAL.UInt8;
+   subtype OPTCR_nWRP_Field is HAL.UInt12;
 
    --  Flash option control register
    type OPTCR_Register is record
       --  Option lock
-      OPTLOCK        : OPTCR_OPTLOCK_Field := 16#0#;
+      OPTLOCK        : Boolean := False;
       --  Option start
-      OPTSTRT        : OPTCR_OPTSTRT_Field := 16#0#;
+      OPTSTRT        : Boolean := False;
       --  BOR reset Level
       BOR_LEV        : OPTCR_BOR_LEV_Field := 16#1#;
       --  unspecified
-      Reserved_4_4   : STM32F40x.Bit := 16#1#;
+      Reserved_4_4   : HAL.Bit := 16#1#;
       --  WDG_SW User option bytes
-      WDG_SW         : OPTCR_WDG_SW_Field := 16#0#;
+      WDG_SW         : Boolean := False;
       --  nRST_STOP User option bytes
-      nRST_STOP      : OPTCR_nRST_STOP_Field := 16#0#;
+      nRST_STOP      : Boolean := False;
       --  nRST_STDBY User option bytes
-      nRST_STDBY     : OPTCR_nRST_STDBY_Field := 16#0#;
+      nRST_STDBY     : Boolean := False;
       --  Read protect
       RDP            : OPTCR_RDP_Field := 16#0#;
       --  Not write protect
       nWRP           : OPTCR_nWRP_Field := 16#0#;
       --  unspecified
-      Reserved_28_31 : STM32F40x.UInt4 := 16#0#;
+      Reserved_28_31 : HAL.UInt4 := 16#0#;
    end record
      with Volatile_Full_Access, Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -229,31 +189,31 @@ package STM32F40x.FLASH is
    --  FLASH
    type FLASH_Peripheral is record
       --  Flash access control register
-      ACR     : ACR_Register;
+      ACR     : aliased ACR_Register;
       --  Flash key register
-      KEYR    : STM32F40x.Word;
+      KEYR    : aliased HAL.UInt32;
       --  Flash option key register
-      OPTKEYR : STM32F40x.Word;
+      OPTKEYR : aliased HAL.UInt32;
       --  Status register
-      SR      : SR_Register;
+      SR      : aliased SR_Register;
       --  Control register
-      CR      : CR_Register;
+      CR      : aliased CR_Register;
       --  Flash option control register
-      OPTCR   : OPTCR_Register;
+      OPTCR   : aliased OPTCR_Register;
    end record
      with Volatile;
 
    for FLASH_Peripheral use record
-      ACR     at 0 range 0 .. 31;
-      KEYR    at 4 range 0 .. 31;
-      OPTKEYR at 8 range 0 .. 31;
-      SR      at 12 range 0 .. 31;
-      CR      at 16 range 0 .. 31;
-      OPTCR   at 20 range 0 .. 31;
+      ACR     at 16#0# range 0 .. 31;
+      KEYR    at 16#4# range 0 .. 31;
+      OPTKEYR at 16#8# range 0 .. 31;
+      SR      at 16#C# range 0 .. 31;
+      CR      at 16#10# range 0 .. 31;
+      OPTCR   at 16#14# range 0 .. 31;
    end record;
 
    --  FLASH
    FLASH_Periph : aliased FLASH_Peripheral
-     with Import, Address => FLASH_Base;
+     with Import, Address => System'To_Address (16#40023C00#);
 
-end STM32F40x.FLASH;
+end STM32_SVD.FLASH;

@@ -17,8 +17,8 @@
 --  <http://www.gnu.org/licenses/>.
 
 with Ada.Real_Time;
-with STM32F40x.GPIO; use STM32F40x.GPIO;
-with STM32F40x.RCC;  use STM32F40x.RCC;
+with STM32_SVD.GPIO; use STM32_SVD.GPIO;
+with STM32_SVD.RCC;  use STM32_SVD.RCC;
 
 package body Heartbeat is
 
@@ -33,10 +33,10 @@ package body Heartbeat is
    begin
       for J in 1 .. 5 loop
          GPIOD_Periph.BSRR.BS := (As_Array => True,
-                                  Arr => (12 => 1, others => 0));
+                                  Arr => (12 => True, others => False));
          delay until Ada.Real_Time.Clock + Ada.Real_Time.Milliseconds (100);
          GPIOD_Periph.BSRR.BR := (As_Array => True,
-                                  Arr => (12 => 1, others => 0));
+                                  Arr => (12 => True, others => False));
          delay until Ada.Real_Time.Clock + Ada.Real_Time.Milliseconds (100);
       end loop;
       loop
@@ -45,18 +45,18 @@ package body Heartbeat is
             Reset : BSRR_BR_Field_Array;
          begin
             for J in 12 .. 15 loop
-               Set := (others => 0);
-               Set (J) := 1;
+               Set := (others => False);
+               Set (J) := True;
                GPIOD_Periph.BSRR.BS := (As_Array => True,
                                         Arr => Set);
                delay until
                  Ada.Real_Time.Clock + Ada.Real_Time.Milliseconds (100);
-               Reset := (others => 0);
-               Reset (J) := 1;
+               Reset := (others => False);
+               Reset (J) := True;
                GPIOD_Periph.BSRR.BR := (As_Array => True,
                                         Arr => Reset);
                delay until
-                 Ada.Real_Time.Clock + Ada.Real_Time.Milliseconds (900);
+                 Ada.Real_Time.Clock + Ada.Real_Time.Milliseconds (100);
             end loop;
          end;
       end loop;
@@ -65,10 +65,10 @@ package body Heartbeat is
 begin
    --  Enable GPIOD
    declare
-      AHB1ENR : STM32F40x.RCC.AHB1ENR_Register;
+      AHB1ENR : STM32_SVD.RCC.AHB1ENR_Register;
    begin
       AHB1ENR := RCC_Periph.AHB1ENR;
-      AHB1ENR.GPIODEN := 1;
+      AHB1ENR.GPIODEN := True;
       RCC_Periph.AHB1ENR := AHB1ENR;
    end;
 

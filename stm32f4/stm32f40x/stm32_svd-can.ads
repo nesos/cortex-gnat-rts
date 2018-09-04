@@ -1,59 +1,45 @@
 --  This spec has been automatically generated from STM32F40x.svd
---  see https://github.com/simonjwright/svd2ada
 
 pragma Restrictions (No_Elaboration_Code);
 pragma Ada_2012;
+pragma Style_Checks (Off);
 
+with HAL;
 with System;
 
-package STM32F40x.CAN is
+package STM32_SVD.CAN is
    pragma Preelaborate;
 
    ---------------
    -- Registers --
    ---------------
 
-   ------------------
-   -- MCR_Register --
-   ------------------
-
-   subtype MCR_INRQ_Field is STM32F40x.Bit;
-   subtype MCR_SLEEP_Field is STM32F40x.Bit;
-   subtype MCR_TXFP_Field is STM32F40x.Bit;
-   subtype MCR_RFLM_Field is STM32F40x.Bit;
-   subtype MCR_NART_Field is STM32F40x.Bit;
-   subtype MCR_AWUM_Field is STM32F40x.Bit;
-   subtype MCR_ABOM_Field is STM32F40x.Bit;
-   subtype MCR_TTCM_Field is STM32F40x.Bit;
-   subtype MCR_RESET_Field is STM32F40x.Bit;
-   subtype MCR_DBF_Field is STM32F40x.Bit;
-
    --  master control register
    type MCR_Register is record
       --  INRQ
-      INRQ           : MCR_INRQ_Field := 16#0#;
+      INRQ           : Boolean := False;
       --  SLEEP
-      SLEEP          : MCR_SLEEP_Field := 16#1#;
+      SLEEP          : Boolean := True;
       --  TXFP
-      TXFP           : MCR_TXFP_Field := 16#0#;
+      TXFP           : Boolean := False;
       --  RFLM
-      RFLM           : MCR_RFLM_Field := 16#0#;
+      RFLM           : Boolean := False;
       --  NART
-      NART           : MCR_NART_Field := 16#0#;
+      NART           : Boolean := False;
       --  AWUM
-      AWUM           : MCR_AWUM_Field := 16#0#;
+      AWUM           : Boolean := False;
       --  ABOM
-      ABOM           : MCR_ABOM_Field := 16#0#;
+      ABOM           : Boolean := False;
       --  TTCM
-      TTCM           : MCR_TTCM_Field := 16#0#;
+      TTCM           : Boolean := False;
       --  unspecified
-      Reserved_8_14  : STM32F40x.UInt7 := 16#0#;
+      Reserved_8_14  : HAL.UInt7 := 16#0#;
       --  RESET
-      RESET          : MCR_RESET_Field := 16#0#;
+      RESET          : Boolean := False;
       --  DBF
-      DBF            : MCR_DBF_Field := 16#1#;
+      DBF            : Boolean := True;
       --  unspecified
-      Reserved_17_31 : STM32F40x.UInt15 := 16#0#;
+      Reserved_17_31 : HAL.UInt15 := 16#0#;
    end record
      with Volatile_Full_Access, Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -73,44 +59,30 @@ package STM32F40x.CAN is
       Reserved_17_31 at 0 range 17 .. 31;
    end record;
 
-   ------------------
-   -- MSR_Register --
-   ------------------
-
-   subtype MSR_INAK_Field is STM32F40x.Bit;
-   subtype MSR_SLAK_Field is STM32F40x.Bit;
-   subtype MSR_ERRI_Field is STM32F40x.Bit;
-   subtype MSR_WKUI_Field is STM32F40x.Bit;
-   subtype MSR_SLAKI_Field is STM32F40x.Bit;
-   subtype MSR_TXM_Field is STM32F40x.Bit;
-   subtype MSR_RXM_Field is STM32F40x.Bit;
-   subtype MSR_SAMP_Field is STM32F40x.Bit;
-   subtype MSR_RX_Field is STM32F40x.Bit;
-
    --  master status register
    type MSR_Register is record
       --  Read-only. INAK
-      INAK           : MSR_INAK_Field := 16#0#;
+      INAK           : Boolean := False;
       --  Read-only. SLAK
-      SLAK           : MSR_SLAK_Field := 16#1#;
+      SLAK           : Boolean := True;
       --  ERRI
-      ERRI           : MSR_ERRI_Field := 16#0#;
+      ERRI           : Boolean := False;
       --  WKUI
-      WKUI           : MSR_WKUI_Field := 16#0#;
+      WKUI           : Boolean := False;
       --  SLAKI
-      SLAKI          : MSR_SLAKI_Field := 16#0#;
+      SLAKI          : Boolean := False;
       --  unspecified
-      Reserved_5_7   : STM32F40x.UInt3 := 16#0#;
+      Reserved_5_7   : HAL.UInt3 := 16#0#;
       --  Read-only. TXM
-      TXM            : MSR_TXM_Field := 16#0#;
+      TXM            : Boolean := False;
       --  Read-only. RXM
-      RXM            : MSR_RXM_Field := 16#0#;
+      RXM            : Boolean := False;
       --  Read-only. SAMP
-      SAMP           : MSR_SAMP_Field := 16#1#;
+      SAMP           : Boolean := True;
       --  Read-only. RX
-      RX             : MSR_RX_Field := 16#1#;
+      RX             : Boolean := True;
       --  unspecified
-      Reserved_12_31 : STM32F40x.UInt20 := 16#0#;
+      Reserved_12_31 : HAL.UInt20 := 16#0#;
    end record
      with Volatile_Full_Access, Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -129,36 +101,10 @@ package STM32F40x.CAN is
       Reserved_12_31 at 0 range 12 .. 31;
    end record;
 
-   ------------------
-   -- TSR_Register --
-   ------------------
-
-   subtype TSR_RQCP0_Field is STM32F40x.Bit;
-   subtype TSR_TXOK0_Field is STM32F40x.Bit;
-   subtype TSR_ALST0_Field is STM32F40x.Bit;
-   subtype TSR_TERR0_Field is STM32F40x.Bit;
-   subtype TSR_ABRQ0_Field is STM32F40x.Bit;
-   subtype TSR_RQCP1_Field is STM32F40x.Bit;
-   subtype TSR_TXOK1_Field is STM32F40x.Bit;
-   subtype TSR_ALST1_Field is STM32F40x.Bit;
-   subtype TSR_TERR1_Field is STM32F40x.Bit;
-   subtype TSR_ABRQ1_Field is STM32F40x.Bit;
-   subtype TSR_RQCP2_Field is STM32F40x.Bit;
-   subtype TSR_TXOK2_Field is STM32F40x.Bit;
-   subtype TSR_ALST2_Field is STM32F40x.Bit;
-   subtype TSR_TERR2_Field is STM32F40x.Bit;
-   subtype TSR_ABRQ2_Field is STM32F40x.Bit;
-   subtype TSR_CODE_Field is STM32F40x.UInt2;
-
-   -------------
-   -- TSR.TME --
-   -------------
-
-   --  TSR_TME array element
-   subtype TSR_TME_Element is STM32F40x.Bit;
+   subtype TSR_CODE_Field is HAL.UInt2;
 
    --  TSR_TME array
-   type TSR_TME_Field_Array is array (0 .. 2) of TSR_TME_Element
+   type TSR_TME_Field_Array is array (0 .. 2) of Boolean
      with Component_Size => 1, Size => 3;
 
    --  Type definition for TSR_TME
@@ -168,7 +114,7 @@ package STM32F40x.CAN is
       case As_Array is
          when False =>
             --  TME as a value
-            Val : STM32F40x.UInt3;
+            Val : HAL.UInt3;
          when True =>
             --  TME as an array
             Arr : TSR_TME_Field_Array;
@@ -181,15 +127,8 @@ package STM32F40x.CAN is
       Arr at 0 range 0 .. 2;
    end record;
 
-   -------------
-   -- TSR.LOW --
-   -------------
-
-   --  TSR_LOW array element
-   subtype TSR_LOW_Element is STM32F40x.Bit;
-
    --  TSR_LOW array
-   type TSR_LOW_Field_Array is array (0 .. 2) of TSR_LOW_Element
+   type TSR_LOW_Field_Array is array (0 .. 2) of Boolean
      with Component_Size => 1, Size => 3;
 
    --  Type definition for TSR_LOW
@@ -199,7 +138,7 @@ package STM32F40x.CAN is
       case As_Array is
          when False =>
             --  LOW as a value
-            Val : STM32F40x.UInt3;
+            Val : HAL.UInt3;
          when True =>
             --  LOW as an array
             Arr : TSR_LOW_Field_Array;
@@ -215,41 +154,41 @@ package STM32F40x.CAN is
    --  transmit status register
    type TSR_Register is record
       --  RQCP0
-      RQCP0          : TSR_RQCP0_Field := 16#0#;
+      RQCP0          : Boolean := False;
       --  TXOK0
-      TXOK0          : TSR_TXOK0_Field := 16#0#;
+      TXOK0          : Boolean := False;
       --  ALST0
-      ALST0          : TSR_ALST0_Field := 16#0#;
+      ALST0          : Boolean := False;
       --  TERR0
-      TERR0          : TSR_TERR0_Field := 16#0#;
+      TERR0          : Boolean := False;
       --  unspecified
-      Reserved_4_6   : STM32F40x.UInt3 := 16#0#;
+      Reserved_4_6   : HAL.UInt3 := 16#0#;
       --  ABRQ0
-      ABRQ0          : TSR_ABRQ0_Field := 16#0#;
+      ABRQ0          : Boolean := False;
       --  RQCP1
-      RQCP1          : TSR_RQCP1_Field := 16#0#;
+      RQCP1          : Boolean := False;
       --  TXOK1
-      TXOK1          : TSR_TXOK1_Field := 16#0#;
+      TXOK1          : Boolean := False;
       --  ALST1
-      ALST1          : TSR_ALST1_Field := 16#0#;
+      ALST1          : Boolean := False;
       --  TERR1
-      TERR1          : TSR_TERR1_Field := 16#0#;
+      TERR1          : Boolean := False;
       --  unspecified
-      Reserved_12_14 : STM32F40x.UInt3 := 16#0#;
+      Reserved_12_14 : HAL.UInt3 := 16#0#;
       --  ABRQ1
-      ABRQ1          : TSR_ABRQ1_Field := 16#0#;
+      ABRQ1          : Boolean := False;
       --  RQCP2
-      RQCP2          : TSR_RQCP2_Field := 16#0#;
+      RQCP2          : Boolean := False;
       --  TXOK2
-      TXOK2          : TSR_TXOK2_Field := 16#0#;
+      TXOK2          : Boolean := False;
       --  ALST2
-      ALST2          : TSR_ALST2_Field := 16#0#;
+      ALST2          : Boolean := False;
       --  TERR2
-      TERR2          : TSR_TERR2_Field := 16#0#;
+      TERR2          : Boolean := False;
       --  unspecified
-      Reserved_20_22 : STM32F40x.UInt3 := 16#0#;
+      Reserved_20_22 : HAL.UInt3 := 16#0#;
       --  ABRQ2
-      ABRQ2          : TSR_ABRQ2_Field := 16#0#;
+      ABRQ2          : Boolean := False;
       --  Read-only. CODE
       CODE           : TSR_CODE_Field := 16#0#;
       --  Read-only. Lowest priority flag for mailbox 0
@@ -284,29 +223,22 @@ package STM32F40x.CAN is
       LOW            at 0 range 29 .. 31;
    end record;
 
-   -------------------
-   -- RF0R_Register --
-   -------------------
-
-   subtype RF0R_FMP0_Field is STM32F40x.UInt2;
-   subtype RF0R_FULL0_Field is STM32F40x.Bit;
-   subtype RF0R_FOVR0_Field is STM32F40x.Bit;
-   subtype RF0R_RFOM0_Field is STM32F40x.Bit;
+   subtype RF0R_FMP0_Field is HAL.UInt2;
 
    --  receive FIFO 0 register
    type RF0R_Register is record
       --  Read-only. FMP0
       FMP0          : RF0R_FMP0_Field := 16#0#;
       --  unspecified
-      Reserved_2_2  : STM32F40x.Bit := 16#0#;
+      Reserved_2_2  : HAL.Bit := 16#0#;
       --  FULL0
-      FULL0         : RF0R_FULL0_Field := 16#0#;
+      FULL0         : Boolean := False;
       --  FOVR0
-      FOVR0         : RF0R_FOVR0_Field := 16#0#;
+      FOVR0         : Boolean := False;
       --  RFOM0
-      RFOM0         : RF0R_RFOM0_Field := 16#0#;
+      RFOM0         : Boolean := False;
       --  unspecified
-      Reserved_6_31 : STM32F40x.UInt26 := 16#0#;
+      Reserved_6_31 : HAL.UInt26 := 16#0#;
    end record
      with Volatile_Full_Access, Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -320,29 +252,22 @@ package STM32F40x.CAN is
       Reserved_6_31 at 0 range 6 .. 31;
    end record;
 
-   -------------------
-   -- RF1R_Register --
-   -------------------
-
-   subtype RF1R_FMP1_Field is STM32F40x.UInt2;
-   subtype RF1R_FULL1_Field is STM32F40x.Bit;
-   subtype RF1R_FOVR1_Field is STM32F40x.Bit;
-   subtype RF1R_RFOM1_Field is STM32F40x.Bit;
+   subtype RF1R_FMP1_Field is HAL.UInt2;
 
    --  receive FIFO 1 register
    type RF1R_Register is record
       --  Read-only. FMP1
       FMP1          : RF1R_FMP1_Field := 16#0#;
       --  unspecified
-      Reserved_2_2  : STM32F40x.Bit := 16#0#;
+      Reserved_2_2  : HAL.Bit := 16#0#;
       --  FULL1
-      FULL1         : RF1R_FULL1_Field := 16#0#;
+      FULL1         : Boolean := False;
       --  FOVR1
-      FOVR1         : RF1R_FOVR1_Field := 16#0#;
+      FOVR1         : Boolean := False;
       --  RFOM1
-      RFOM1         : RF1R_RFOM1_Field := 16#0#;
+      RFOM1         : Boolean := False;
       --  unspecified
-      Reserved_6_31 : STM32F40x.UInt26 := 16#0#;
+      Reserved_6_31 : HAL.UInt26 := 16#0#;
    end record
      with Volatile_Full_Access, Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -356,61 +281,42 @@ package STM32F40x.CAN is
       Reserved_6_31 at 0 range 6 .. 31;
    end record;
 
-   ------------------
-   -- IER_Register --
-   ------------------
-
-   subtype IER_TMEIE_Field is STM32F40x.Bit;
-   subtype IER_FMPIE0_Field is STM32F40x.Bit;
-   subtype IER_FFIE0_Field is STM32F40x.Bit;
-   subtype IER_FOVIE0_Field is STM32F40x.Bit;
-   subtype IER_FMPIE1_Field is STM32F40x.Bit;
-   subtype IER_FFIE1_Field is STM32F40x.Bit;
-   subtype IER_FOVIE1_Field is STM32F40x.Bit;
-   subtype IER_EWGIE_Field is STM32F40x.Bit;
-   subtype IER_EPVIE_Field is STM32F40x.Bit;
-   subtype IER_BOFIE_Field is STM32F40x.Bit;
-   subtype IER_LECIE_Field is STM32F40x.Bit;
-   subtype IER_ERRIE_Field is STM32F40x.Bit;
-   subtype IER_WKUIE_Field is STM32F40x.Bit;
-   subtype IER_SLKIE_Field is STM32F40x.Bit;
-
    --  interrupt enable register
    type IER_Register is record
       --  TMEIE
-      TMEIE          : IER_TMEIE_Field := 16#0#;
+      TMEIE          : Boolean := False;
       --  FMPIE0
-      FMPIE0         : IER_FMPIE0_Field := 16#0#;
+      FMPIE0         : Boolean := False;
       --  FFIE0
-      FFIE0          : IER_FFIE0_Field := 16#0#;
+      FFIE0          : Boolean := False;
       --  FOVIE0
-      FOVIE0         : IER_FOVIE0_Field := 16#0#;
+      FOVIE0         : Boolean := False;
       --  FMPIE1
-      FMPIE1         : IER_FMPIE1_Field := 16#0#;
+      FMPIE1         : Boolean := False;
       --  FFIE1
-      FFIE1          : IER_FFIE1_Field := 16#0#;
+      FFIE1          : Boolean := False;
       --  FOVIE1
-      FOVIE1         : IER_FOVIE1_Field := 16#0#;
+      FOVIE1         : Boolean := False;
       --  unspecified
-      Reserved_7_7   : STM32F40x.Bit := 16#0#;
+      Reserved_7_7   : HAL.Bit := 16#0#;
       --  EWGIE
-      EWGIE          : IER_EWGIE_Field := 16#0#;
+      EWGIE          : Boolean := False;
       --  EPVIE
-      EPVIE          : IER_EPVIE_Field := 16#0#;
+      EPVIE          : Boolean := False;
       --  BOFIE
-      BOFIE          : IER_BOFIE_Field := 16#0#;
+      BOFIE          : Boolean := False;
       --  LECIE
-      LECIE          : IER_LECIE_Field := 16#0#;
+      LECIE          : Boolean := False;
       --  unspecified
-      Reserved_12_14 : STM32F40x.UInt3 := 16#0#;
+      Reserved_12_14 : HAL.UInt3 := 16#0#;
       --  ERRIE
-      ERRIE          : IER_ERRIE_Field := 16#0#;
+      ERRIE          : Boolean := False;
       --  WKUIE
-      WKUIE          : IER_WKUIE_Field := 16#0#;
+      WKUIE          : Boolean := False;
       --  SLKIE
-      SLKIE          : IER_SLKIE_Field := 16#0#;
+      SLKIE          : Boolean := False;
       --  unspecified
-      Reserved_18_31 : STM32F40x.UInt14 := 16#0#;
+      Reserved_18_31 : HAL.UInt14 := 16#0#;
    end record
      with Volatile_Full_Access, Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -435,31 +341,24 @@ package STM32F40x.CAN is
       Reserved_18_31 at 0 range 18 .. 31;
    end record;
 
-   ------------------
-   -- ESR_Register --
-   ------------------
-
-   subtype ESR_EWGF_Field is STM32F40x.Bit;
-   subtype ESR_EPVF_Field is STM32F40x.Bit;
-   subtype ESR_BOFF_Field is STM32F40x.Bit;
-   subtype ESR_LEC_Field is STM32F40x.UInt3;
-   subtype ESR_TEC_Field is STM32F40x.Byte;
-   subtype ESR_REC_Field is STM32F40x.Byte;
+   subtype ESR_LEC_Field is HAL.UInt3;
+   subtype ESR_TEC_Field is HAL.UInt8;
+   subtype ESR_REC_Field is HAL.UInt8;
 
    --  interrupt enable register
    type ESR_Register is record
       --  Read-only. EWGF
-      EWGF          : ESR_EWGF_Field := 16#0#;
+      EWGF          : Boolean := False;
       --  Read-only. EPVF
-      EPVF          : ESR_EPVF_Field := 16#0#;
+      EPVF          : Boolean := False;
       --  Read-only. BOFF
-      BOFF          : ESR_BOFF_Field := 16#0#;
+      BOFF          : Boolean := False;
       --  unspecified
-      Reserved_3_3  : STM32F40x.Bit := 16#0#;
+      Reserved_3_3  : HAL.Bit := 16#0#;
       --  LEC
       LEC           : ESR_LEC_Field := 16#0#;
       --  unspecified
-      Reserved_7_15 : STM32F40x.UInt9 := 16#0#;
+      Reserved_7_15 : HAL.UInt9 := 16#0#;
       --  Read-only. TEC
       TEC           : ESR_TEC_Field := 16#0#;
       --  Read-only. REC
@@ -479,37 +378,31 @@ package STM32F40x.CAN is
       REC           at 0 range 24 .. 31;
    end record;
 
-   ------------------
-   -- BTR_Register --
-   ------------------
-
-   subtype BTR_BRP_Field is STM32F40x.UInt10;
-   subtype BTR_TS1_Field is STM32F40x.UInt4;
-   subtype BTR_TS2_Field is STM32F40x.UInt3;
-   subtype BTR_SJW_Field is STM32F40x.UInt2;
-   subtype BTR_LBKM_Field is STM32F40x.Bit;
-   subtype BTR_SILM_Field is STM32F40x.Bit;
+   subtype BTR_BRP_Field is HAL.UInt10;
+   subtype BTR_TS1_Field is HAL.UInt4;
+   subtype BTR_TS2_Field is HAL.UInt3;
+   subtype BTR_SJW_Field is HAL.UInt2;
 
    --  bit timing register
    type BTR_Register is record
       --  BRP
       BRP            : BTR_BRP_Field := 16#0#;
       --  unspecified
-      Reserved_10_15 : STM32F40x.UInt6 := 16#0#;
+      Reserved_10_15 : HAL.UInt6 := 16#0#;
       --  TS1
       TS1            : BTR_TS1_Field := 16#0#;
       --  TS2
       TS2            : BTR_TS2_Field := 16#0#;
       --  unspecified
-      Reserved_23_23 : STM32F40x.Bit := 16#0#;
+      Reserved_23_23 : HAL.Bit := 16#0#;
       --  SJW
       SJW            : BTR_SJW_Field := 16#0#;
       --  unspecified
-      Reserved_26_29 : STM32F40x.UInt4 := 16#0#;
+      Reserved_26_29 : HAL.UInt4 := 16#0#;
       --  LBKM
-      LBKM           : BTR_LBKM_Field := 16#0#;
+      LBKM           : Boolean := False;
       --  SILM
-      SILM           : BTR_SILM_Field := 16#0#;
+      SILM           : Boolean := False;
    end record
      with Volatile_Full_Access, Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -526,24 +419,17 @@ package STM32F40x.CAN is
       SILM           at 0 range 31 .. 31;
    end record;
 
-   -------------------
-   -- TI0R_Register --
-   -------------------
-
-   subtype TI0R_TXRQ_Field is STM32F40x.Bit;
-   subtype TI0R_RTR_Field is STM32F40x.Bit;
-   subtype TI0R_IDE_Field is STM32F40x.Bit;
-   subtype TI0R_EXID_Field is STM32F40x.UInt18;
-   subtype TI0R_STID_Field is STM32F40x.UInt11;
+   subtype TI0R_EXID_Field is HAL.UInt18;
+   subtype TI0R_STID_Field is HAL.UInt11;
 
    --  TX mailbox identifier register
    type TI0R_Register is record
       --  TXRQ
-      TXRQ : TI0R_TXRQ_Field := 16#0#;
+      TXRQ : Boolean := False;
       --  RTR
-      RTR  : TI0R_RTR_Field := 16#0#;
+      RTR  : Boolean := False;
       --  IDE
-      IDE  : TI0R_IDE_Field := 16#0#;
+      IDE  : Boolean := False;
       --  EXID
       EXID : TI0R_EXID_Field := 16#0#;
       --  STID
@@ -560,24 +446,19 @@ package STM32F40x.CAN is
       STID at 0 range 21 .. 31;
    end record;
 
-   --------------------
-   -- TDT0R_Register --
-   --------------------
-
-   subtype TDT0R_DLC_Field is STM32F40x.UInt4;
-   subtype TDT0R_TGT_Field is STM32F40x.Bit;
-   subtype TDT0R_TIME_Field is STM32F40x.Short;
+   subtype TDT0R_DLC_Field is HAL.UInt4;
+   subtype TDT0R_TIME_Field is HAL.UInt16;
 
    --  mailbox data length control and time stamp register
    type TDT0R_Register is record
       --  DLC
       DLC           : TDT0R_DLC_Field := 16#0#;
       --  unspecified
-      Reserved_4_7  : STM32F40x.UInt4 := 16#0#;
+      Reserved_4_7  : HAL.UInt4 := 16#0#;
       --  TGT
-      TGT           : TDT0R_TGT_Field := 16#0#;
+      TGT           : Boolean := False;
       --  unspecified
-      Reserved_9_15 : STM32F40x.UInt7 := 16#0#;
+      Reserved_9_15 : HAL.UInt7 := 16#0#;
       --  TIME
       TIME          : TDT0R_TIME_Field := 16#0#;
    end record
@@ -592,12 +473,8 @@ package STM32F40x.CAN is
       TIME          at 0 range 16 .. 31;
    end record;
 
-   --------------------
-   -- TDL0R_Register --
-   --------------------
-
    --  TDL0R_DATA array element
-   subtype TDL0R_DATA_Element is STM32F40x.Byte;
+   subtype TDL0R_DATA_Element is HAL.UInt8;
 
    --  TDL0R_DATA array
    type TDL0R_DATA_Field_Array is array (0 .. 3) of TDL0R_DATA_Element
@@ -610,7 +487,7 @@ package STM32F40x.CAN is
       case As_Array is
          when False =>
             --  DATA as a value
-            Val : STM32F40x.Word;
+            Val : HAL.UInt32;
          when True =>
             --  DATA as an array
             Arr : TDL0R_DATA_Field_Array;
@@ -624,12 +501,8 @@ package STM32F40x.CAN is
       Arr at 0 range 0 .. 31;
    end record;
 
-   --------------------
-   -- TDH0R_Register --
-   --------------------
-
    --  TDH0R_DATA array element
-   subtype TDH0R_DATA_Element is STM32F40x.Byte;
+   subtype TDH0R_DATA_Element is HAL.UInt8;
 
    --  TDH0R_DATA array
    type TDH0R_DATA_Field_Array is array (4 .. 7) of TDH0R_DATA_Element
@@ -642,7 +515,7 @@ package STM32F40x.CAN is
       case As_Array is
          when False =>
             --  DATA as a value
-            Val : STM32F40x.Word;
+            Val : HAL.UInt32;
          when True =>
             --  DATA as an array
             Arr : TDH0R_DATA_Field_Array;
@@ -656,24 +529,17 @@ package STM32F40x.CAN is
       Arr at 0 range 0 .. 31;
    end record;
 
-   -------------------
-   -- TI1R_Register --
-   -------------------
-
-   subtype TI1R_TXRQ_Field is STM32F40x.Bit;
-   subtype TI1R_RTR_Field is STM32F40x.Bit;
-   subtype TI1R_IDE_Field is STM32F40x.Bit;
-   subtype TI1R_EXID_Field is STM32F40x.UInt18;
-   subtype TI1R_STID_Field is STM32F40x.UInt11;
+   subtype TI1R_EXID_Field is HAL.UInt18;
+   subtype TI1R_STID_Field is HAL.UInt11;
 
    --  mailbox identifier register
    type TI1R_Register is record
       --  TXRQ
-      TXRQ : TI1R_TXRQ_Field := 16#0#;
+      TXRQ : Boolean := False;
       --  RTR
-      RTR  : TI1R_RTR_Field := 16#0#;
+      RTR  : Boolean := False;
       --  IDE
-      IDE  : TI1R_IDE_Field := 16#0#;
+      IDE  : Boolean := False;
       --  EXID
       EXID : TI1R_EXID_Field := 16#0#;
       --  STID
@@ -690,24 +556,19 @@ package STM32F40x.CAN is
       STID at 0 range 21 .. 31;
    end record;
 
-   --------------------
-   -- TDT1R_Register --
-   --------------------
-
-   subtype TDT1R_DLC_Field is STM32F40x.UInt4;
-   subtype TDT1R_TGT_Field is STM32F40x.Bit;
-   subtype TDT1R_TIME_Field is STM32F40x.Short;
+   subtype TDT1R_DLC_Field is HAL.UInt4;
+   subtype TDT1R_TIME_Field is HAL.UInt16;
 
    --  mailbox data length control and time stamp register
    type TDT1R_Register is record
       --  DLC
       DLC           : TDT1R_DLC_Field := 16#0#;
       --  unspecified
-      Reserved_4_7  : STM32F40x.UInt4 := 16#0#;
+      Reserved_4_7  : HAL.UInt4 := 16#0#;
       --  TGT
-      TGT           : TDT1R_TGT_Field := 16#0#;
+      TGT           : Boolean := False;
       --  unspecified
-      Reserved_9_15 : STM32F40x.UInt7 := 16#0#;
+      Reserved_9_15 : HAL.UInt7 := 16#0#;
       --  TIME
       TIME          : TDT1R_TIME_Field := 16#0#;
    end record
@@ -722,12 +583,8 @@ package STM32F40x.CAN is
       TIME          at 0 range 16 .. 31;
    end record;
 
-   --------------------
-   -- TDL1R_Register --
-   --------------------
-
    --  TDL1R_DATA array element
-   subtype TDL1R_DATA_Element is STM32F40x.Byte;
+   subtype TDL1R_DATA_Element is HAL.UInt8;
 
    --  TDL1R_DATA array
    type TDL1R_DATA_Field_Array is array (0 .. 3) of TDL1R_DATA_Element
@@ -740,7 +597,7 @@ package STM32F40x.CAN is
       case As_Array is
          when False =>
             --  DATA as a value
-            Val : STM32F40x.Word;
+            Val : HAL.UInt32;
          when True =>
             --  DATA as an array
             Arr : TDL1R_DATA_Field_Array;
@@ -754,12 +611,8 @@ package STM32F40x.CAN is
       Arr at 0 range 0 .. 31;
    end record;
 
-   --------------------
-   -- TDH1R_Register --
-   --------------------
-
    --  TDH1R_DATA array element
-   subtype TDH1R_DATA_Element is STM32F40x.Byte;
+   subtype TDH1R_DATA_Element is HAL.UInt8;
 
    --  TDH1R_DATA array
    type TDH1R_DATA_Field_Array is array (4 .. 7) of TDH1R_DATA_Element
@@ -772,7 +625,7 @@ package STM32F40x.CAN is
       case As_Array is
          when False =>
             --  DATA as a value
-            Val : STM32F40x.Word;
+            Val : HAL.UInt32;
          when True =>
             --  DATA as an array
             Arr : TDH1R_DATA_Field_Array;
@@ -786,24 +639,17 @@ package STM32F40x.CAN is
       Arr at 0 range 0 .. 31;
    end record;
 
-   -------------------
-   -- TI2R_Register --
-   -------------------
-
-   subtype TI2R_TXRQ_Field is STM32F40x.Bit;
-   subtype TI2R_RTR_Field is STM32F40x.Bit;
-   subtype TI2R_IDE_Field is STM32F40x.Bit;
-   subtype TI2R_EXID_Field is STM32F40x.UInt18;
-   subtype TI2R_STID_Field is STM32F40x.UInt11;
+   subtype TI2R_EXID_Field is HAL.UInt18;
+   subtype TI2R_STID_Field is HAL.UInt11;
 
    --  mailbox identifier register
    type TI2R_Register is record
       --  TXRQ
-      TXRQ : TI2R_TXRQ_Field := 16#0#;
+      TXRQ : Boolean := False;
       --  RTR
-      RTR  : TI2R_RTR_Field := 16#0#;
+      RTR  : Boolean := False;
       --  IDE
-      IDE  : TI2R_IDE_Field := 16#0#;
+      IDE  : Boolean := False;
       --  EXID
       EXID : TI2R_EXID_Field := 16#0#;
       --  STID
@@ -820,24 +666,19 @@ package STM32F40x.CAN is
       STID at 0 range 21 .. 31;
    end record;
 
-   --------------------
-   -- TDT2R_Register --
-   --------------------
-
-   subtype TDT2R_DLC_Field is STM32F40x.UInt4;
-   subtype TDT2R_TGT_Field is STM32F40x.Bit;
-   subtype TDT2R_TIME_Field is STM32F40x.Short;
+   subtype TDT2R_DLC_Field is HAL.UInt4;
+   subtype TDT2R_TIME_Field is HAL.UInt16;
 
    --  mailbox data length control and time stamp register
    type TDT2R_Register is record
       --  DLC
       DLC           : TDT2R_DLC_Field := 16#0#;
       --  unspecified
-      Reserved_4_7  : STM32F40x.UInt4 := 16#0#;
+      Reserved_4_7  : HAL.UInt4 := 16#0#;
       --  TGT
-      TGT           : TDT2R_TGT_Field := 16#0#;
+      TGT           : Boolean := False;
       --  unspecified
-      Reserved_9_15 : STM32F40x.UInt7 := 16#0#;
+      Reserved_9_15 : HAL.UInt7 := 16#0#;
       --  TIME
       TIME          : TDT2R_TIME_Field := 16#0#;
    end record
@@ -852,12 +693,8 @@ package STM32F40x.CAN is
       TIME          at 0 range 16 .. 31;
    end record;
 
-   --------------------
-   -- TDL2R_Register --
-   --------------------
-
    --  TDL2R_DATA array element
-   subtype TDL2R_DATA_Element is STM32F40x.Byte;
+   subtype TDL2R_DATA_Element is HAL.UInt8;
 
    --  TDL2R_DATA array
    type TDL2R_DATA_Field_Array is array (0 .. 3) of TDL2R_DATA_Element
@@ -870,7 +707,7 @@ package STM32F40x.CAN is
       case As_Array is
          when False =>
             --  DATA as a value
-            Val : STM32F40x.Word;
+            Val : HAL.UInt32;
          when True =>
             --  DATA as an array
             Arr : TDL2R_DATA_Field_Array;
@@ -884,12 +721,8 @@ package STM32F40x.CAN is
       Arr at 0 range 0 .. 31;
    end record;
 
-   --------------------
-   -- TDH2R_Register --
-   --------------------
-
    --  TDH2R_DATA array element
-   subtype TDH2R_DATA_Element is STM32F40x.Byte;
+   subtype TDH2R_DATA_Element is HAL.UInt8;
 
    --  TDH2R_DATA array
    type TDH2R_DATA_Field_Array is array (4 .. 7) of TDH2R_DATA_Element
@@ -902,7 +735,7 @@ package STM32F40x.CAN is
       case As_Array is
          when False =>
             --  DATA as a value
-            Val : STM32F40x.Word;
+            Val : HAL.UInt32;
          when True =>
             --  DATA as an array
             Arr : TDH2R_DATA_Field_Array;
@@ -916,27 +749,21 @@ package STM32F40x.CAN is
       Arr at 0 range 0 .. 31;
    end record;
 
-   -------------------
-   -- RI0R_Register --
-   -------------------
-
-   subtype RI0R_RTR_Field is STM32F40x.Bit;
-   subtype RI0R_IDE_Field is STM32F40x.Bit;
-   subtype RI0R_EXID_Field is STM32F40x.UInt18;
-   subtype RI0R_STID_Field is STM32F40x.UInt11;
+   subtype RI0R_EXID_Field is HAL.UInt18;
+   subtype RI0R_STID_Field is HAL.UInt11;
 
    --  receive FIFO mailbox identifier register
    type RI0R_Register is record
       --  unspecified
-      Reserved_0_0 : STM32F40x.Bit;
+      Reserved_0_0 : HAL.Bit;
       --  Read-only. RTR
-      RTR          : RI0R_RTR_Field := 16#0#;
+      RTR          : Boolean;
       --  Read-only. IDE
-      IDE          : RI0R_IDE_Field := 16#0#;
+      IDE          : Boolean;
       --  Read-only. EXID
-      EXID         : RI0R_EXID_Field := 16#0#;
+      EXID         : RI0R_EXID_Field;
       --  Read-only. STID
-      STID         : RI0R_STID_Field := 16#0#;
+      STID         : RI0R_STID_Field;
    end record
      with Volatile_Full_Access, Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -949,24 +776,20 @@ package STM32F40x.CAN is
       STID         at 0 range 21 .. 31;
    end record;
 
-   --------------------
-   -- RDT0R_Register --
-   --------------------
-
-   subtype RDT0R_DLC_Field is STM32F40x.UInt4;
-   subtype RDT0R_FMI_Field is STM32F40x.Byte;
-   subtype RDT0R_TIME_Field is STM32F40x.Short;
+   subtype RDT0R_DLC_Field is HAL.UInt4;
+   subtype RDT0R_FMI_Field is HAL.UInt8;
+   subtype RDT0R_TIME_Field is HAL.UInt16;
 
    --  mailbox data high register
    type RDT0R_Register is record
       --  Read-only. DLC
-      DLC          : RDT0R_DLC_Field := 16#0#;
+      DLC          : RDT0R_DLC_Field;
       --  unspecified
-      Reserved_4_7 : STM32F40x.UInt4;
+      Reserved_4_7 : HAL.UInt4;
       --  Read-only. FMI
-      FMI          : RDT0R_FMI_Field := 16#0#;
+      FMI          : RDT0R_FMI_Field;
       --  Read-only. TIME
-      TIME         : RDT0R_TIME_Field := 16#0#;
+      TIME         : RDT0R_TIME_Field;
    end record
      with Volatile_Full_Access, Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -978,12 +801,8 @@ package STM32F40x.CAN is
       TIME         at 0 range 16 .. 31;
    end record;
 
-   --------------------
-   -- RDL0R_Register --
-   --------------------
-
    --  RDL0R_DATA array element
-   subtype RDL0R_DATA_Element is STM32F40x.Byte;
+   subtype RDL0R_DATA_Element is HAL.UInt8;
 
    --  RDL0R_DATA array
    type RDL0R_DATA_Field_Array is array (0 .. 3) of RDL0R_DATA_Element
@@ -996,7 +815,7 @@ package STM32F40x.CAN is
       case As_Array is
          when False =>
             --  DATA as a value
-            Val : STM32F40x.Word;
+            Val : HAL.UInt32;
          when True =>
             --  DATA as an array
             Arr : RDL0R_DATA_Field_Array;
@@ -1010,12 +829,8 @@ package STM32F40x.CAN is
       Arr at 0 range 0 .. 31;
    end record;
 
-   --------------------
-   -- RDH0R_Register --
-   --------------------
-
    --  RDH0R_DATA array element
-   subtype RDH0R_DATA_Element is STM32F40x.Byte;
+   subtype RDH0R_DATA_Element is HAL.UInt8;
 
    --  RDH0R_DATA array
    type RDH0R_DATA_Field_Array is array (4 .. 7) of RDH0R_DATA_Element
@@ -1028,7 +843,7 @@ package STM32F40x.CAN is
       case As_Array is
          when False =>
             --  DATA as a value
-            Val : STM32F40x.Word;
+            Val : HAL.UInt32;
          when True =>
             --  DATA as an array
             Arr : RDH0R_DATA_Field_Array;
@@ -1042,27 +857,21 @@ package STM32F40x.CAN is
       Arr at 0 range 0 .. 31;
    end record;
 
-   -------------------
-   -- RI1R_Register --
-   -------------------
-
-   subtype RI1R_RTR_Field is STM32F40x.Bit;
-   subtype RI1R_IDE_Field is STM32F40x.Bit;
-   subtype RI1R_EXID_Field is STM32F40x.UInt18;
-   subtype RI1R_STID_Field is STM32F40x.UInt11;
+   subtype RI1R_EXID_Field is HAL.UInt18;
+   subtype RI1R_STID_Field is HAL.UInt11;
 
    --  mailbox data high register
    type RI1R_Register is record
       --  unspecified
-      Reserved_0_0 : STM32F40x.Bit;
+      Reserved_0_0 : HAL.Bit;
       --  Read-only. RTR
-      RTR          : RI1R_RTR_Field := 16#0#;
+      RTR          : Boolean;
       --  Read-only. IDE
-      IDE          : RI1R_IDE_Field := 16#0#;
+      IDE          : Boolean;
       --  Read-only. EXID
-      EXID         : RI1R_EXID_Field := 16#0#;
+      EXID         : RI1R_EXID_Field;
       --  Read-only. STID
-      STID         : RI1R_STID_Field := 16#0#;
+      STID         : RI1R_STID_Field;
    end record
      with Volatile_Full_Access, Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -1075,24 +884,20 @@ package STM32F40x.CAN is
       STID         at 0 range 21 .. 31;
    end record;
 
-   --------------------
-   -- RDT1R_Register --
-   --------------------
-
-   subtype RDT1R_DLC_Field is STM32F40x.UInt4;
-   subtype RDT1R_FMI_Field is STM32F40x.Byte;
-   subtype RDT1R_TIME_Field is STM32F40x.Short;
+   subtype RDT1R_DLC_Field is HAL.UInt4;
+   subtype RDT1R_FMI_Field is HAL.UInt8;
+   subtype RDT1R_TIME_Field is HAL.UInt16;
 
    --  mailbox data high register
    type RDT1R_Register is record
       --  Read-only. DLC
-      DLC          : RDT1R_DLC_Field := 16#0#;
+      DLC          : RDT1R_DLC_Field;
       --  unspecified
-      Reserved_4_7 : STM32F40x.UInt4;
+      Reserved_4_7 : HAL.UInt4;
       --  Read-only. FMI
-      FMI          : RDT1R_FMI_Field := 16#0#;
+      FMI          : RDT1R_FMI_Field;
       --  Read-only. TIME
-      TIME         : RDT1R_TIME_Field := 16#0#;
+      TIME         : RDT1R_TIME_Field;
    end record
      with Volatile_Full_Access, Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -1104,12 +909,8 @@ package STM32F40x.CAN is
       TIME         at 0 range 16 .. 31;
    end record;
 
-   --------------------
-   -- RDL1R_Register --
-   --------------------
-
    --  RDL1R_DATA array element
-   subtype RDL1R_DATA_Element is STM32F40x.Byte;
+   subtype RDL1R_DATA_Element is HAL.UInt8;
 
    --  RDL1R_DATA array
    type RDL1R_DATA_Field_Array is array (0 .. 3) of RDL1R_DATA_Element
@@ -1122,7 +923,7 @@ package STM32F40x.CAN is
       case As_Array is
          when False =>
             --  DATA as a value
-            Val : STM32F40x.Word;
+            Val : HAL.UInt32;
          when True =>
             --  DATA as an array
             Arr : RDL1R_DATA_Field_Array;
@@ -1136,12 +937,8 @@ package STM32F40x.CAN is
       Arr at 0 range 0 .. 31;
    end record;
 
-   --------------------
-   -- RDH1R_Register --
-   --------------------
-
    --  RDH1R_DATA array element
-   subtype RDH1R_DATA_Element is STM32F40x.Byte;
+   subtype RDH1R_DATA_Element is HAL.UInt8;
 
    --  RDH1R_DATA array
    type RDH1R_DATA_Field_Array is array (4 .. 7) of RDH1R_DATA_Element
@@ -1154,7 +951,7 @@ package STM32F40x.CAN is
       case As_Array is
          when False =>
             --  DATA as a value
-            Val : STM32F40x.Word;
+            Val : HAL.UInt32;
          when True =>
             --  DATA as an array
             Arr : RDH1R_DATA_Field_Array;
@@ -1168,23 +965,18 @@ package STM32F40x.CAN is
       Arr at 0 range 0 .. 31;
    end record;
 
-   ------------------
-   -- FMR_Register --
-   ------------------
-
-   subtype FMR_FINIT_Field is STM32F40x.Bit;
-   subtype FMR_CAN2SB_Field is STM32F40x.UInt6;
+   subtype FMR_CAN2SB_Field is HAL.UInt6;
 
    --  filter master register
    type FMR_Register is record
       --  FINIT
-      FINIT          : FMR_FINIT_Field := 16#1#;
+      FINIT          : Boolean := True;
       --  unspecified
-      Reserved_1_7   : STM32F40x.UInt7 := 16#0#;
+      Reserved_1_7   : HAL.UInt7 := 16#0#;
       --  CAN2SB
       CAN2SB         : FMR_CAN2SB_Field := 16#E#;
       --  unspecified
-      Reserved_14_31 : STM32F40x.UInt18 := 16#A870#;
+      Reserved_14_31 : HAL.UInt18 := 16#A870#;
    end record
      with Volatile_Full_Access, Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -1196,19 +988,8 @@ package STM32F40x.CAN is
       Reserved_14_31 at 0 range 14 .. 31;
    end record;
 
-   -------------------
-   -- FM1R_Register --
-   -------------------
-
-   --------------
-   -- FM1R.FBM --
-   --------------
-
-   --  FM1R_FBM array element
-   subtype FM1R_FBM_Element is STM32F40x.Bit;
-
    --  FM1R_FBM array
-   type FM1R_FBM_Field_Array is array (0 .. 27) of FM1R_FBM_Element
+   type FM1R_FBM_Field_Array is array (0 .. 27) of Boolean
      with Component_Size => 1, Size => 28;
 
    --  Type definition for FM1R_FBM
@@ -1218,7 +999,7 @@ package STM32F40x.CAN is
       case As_Array is
          when False =>
             --  FBM as a value
-            Val : STM32F40x.UInt28;
+            Val : HAL.UInt28;
          when True =>
             --  FBM as an array
             Arr : FM1R_FBM_Field_Array;
@@ -1236,7 +1017,7 @@ package STM32F40x.CAN is
       --  Filter mode
       FBM            : FM1R_FBM_Field := (As_Array => False, Val => 16#0#);
       --  unspecified
-      Reserved_28_31 : STM32F40x.UInt4 := 16#0#;
+      Reserved_28_31 : HAL.UInt4 := 16#0#;
    end record
      with Volatile_Full_Access, Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -1246,19 +1027,8 @@ package STM32F40x.CAN is
       Reserved_28_31 at 0 range 28 .. 31;
    end record;
 
-   -------------------
-   -- FS1R_Register --
-   -------------------
-
-   --------------
-   -- FS1R.FSC --
-   --------------
-
-   --  FS1R_FSC array element
-   subtype FS1R_FSC_Element is STM32F40x.Bit;
-
    --  FS1R_FSC array
-   type FS1R_FSC_Field_Array is array (0 .. 27) of FS1R_FSC_Element
+   type FS1R_FSC_Field_Array is array (0 .. 27) of Boolean
      with Component_Size => 1, Size => 28;
 
    --  Type definition for FS1R_FSC
@@ -1268,7 +1038,7 @@ package STM32F40x.CAN is
       case As_Array is
          when False =>
             --  FSC as a value
-            Val : STM32F40x.UInt28;
+            Val : HAL.UInt28;
          when True =>
             --  FSC as an array
             Arr : FS1R_FSC_Field_Array;
@@ -1286,7 +1056,7 @@ package STM32F40x.CAN is
       --  Filter scale configuration
       FSC            : FS1R_FSC_Field := (As_Array => False, Val => 16#0#);
       --  unspecified
-      Reserved_28_31 : STM32F40x.UInt4 := 16#0#;
+      Reserved_28_31 : HAL.UInt4 := 16#0#;
    end record
      with Volatile_Full_Access, Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -1296,19 +1066,8 @@ package STM32F40x.CAN is
       Reserved_28_31 at 0 range 28 .. 31;
    end record;
 
-   --------------------
-   -- FFA1R_Register --
-   --------------------
-
-   ---------------
-   -- FFA1R.FFA --
-   ---------------
-
-   --  FFA1R_FFA array element
-   subtype FFA1R_FFA_Element is STM32F40x.Bit;
-
    --  FFA1R_FFA array
-   type FFA1R_FFA_Field_Array is array (0 .. 27) of FFA1R_FFA_Element
+   type FFA1R_FFA_Field_Array is array (0 .. 27) of Boolean
      with Component_Size => 1, Size => 28;
 
    --  Type definition for FFA1R_FFA
@@ -1318,7 +1077,7 @@ package STM32F40x.CAN is
       case As_Array is
          when False =>
             --  FFA as a value
-            Val : STM32F40x.UInt28;
+            Val : HAL.UInt28;
          when True =>
             --  FFA as an array
             Arr : FFA1R_FFA_Field_Array;
@@ -1336,7 +1095,7 @@ package STM32F40x.CAN is
       --  Filter FIFO assignment for filter 0
       FFA            : FFA1R_FFA_Field := (As_Array => False, Val => 16#0#);
       --  unspecified
-      Reserved_28_31 : STM32F40x.UInt4 := 16#0#;
+      Reserved_28_31 : HAL.UInt4 := 16#0#;
    end record
      with Volatile_Full_Access, Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -1346,19 +1105,8 @@ package STM32F40x.CAN is
       Reserved_28_31 at 0 range 28 .. 31;
    end record;
 
-   -------------------
-   -- FA1R_Register --
-   -------------------
-
-   ---------------
-   -- FA1R.FACT --
-   ---------------
-
-   --  FA1R_FACT array element
-   subtype FA1R_FACT_Element is STM32F40x.Bit;
-
    --  FA1R_FACT array
-   type FA1R_FACT_Field_Array is array (0 .. 27) of FA1R_FACT_Element
+   type FA1R_FACT_Field_Array is array (0 .. 27) of Boolean
      with Component_Size => 1, Size => 28;
 
    --  Type definition for FA1R_FACT
@@ -1368,7 +1116,7 @@ package STM32F40x.CAN is
       case As_Array is
          when False =>
             --  FACT as a value
-            Val : STM32F40x.UInt28;
+            Val : HAL.UInt28;
          when True =>
             --  FACT as an array
             Arr : FA1R_FACT_Field_Array;
@@ -1386,7 +1134,7 @@ package STM32F40x.CAN is
       --  Filter active
       FACT           : FA1R_FACT_Field := (As_Array => False, Val => 16#0#);
       --  unspecified
-      Reserved_28_31 : STM32F40x.UInt4 := 16#0#;
+      Reserved_28_31 : HAL.UInt4 := 16#0#;
    end record
      with Volatile_Full_Access, Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -1396,15 +1144,8 @@ package STM32F40x.CAN is
       Reserved_28_31 at 0 range 28 .. 31;
    end record;
 
-   ------------------
-   -- F0R_Register --
-   ------------------
-
-   --  F0R1_FB array element
-   subtype F0R1_FB_Element is STM32F40x.Bit;
-
-   --  F0R1_FB array
-   type F0R1_FB_Field_Array is array (0 .. 31) of F0R1_FB_Element
+   --  F0R_FB array
+   type F0R_FB_Field_Array is array (0 .. 31) of Boolean
      with Component_Size => 1, Size => 32;
 
    --  Filter bank 0 register 1
@@ -1414,10 +1155,10 @@ package STM32F40x.CAN is
       case As_Array is
          when False =>
             --  FB as a value
-            Val : STM32F40x.Word;
+            Val : HAL.UInt32;
          when True =>
             --  FB as an array
-            Arr : F0R1_FB_Field_Array;
+            Arr : F0R_FB_Field_Array;
       end case;
    end record
      with Unchecked_Union, Size => 32, Volatile_Full_Access,
@@ -1428,15 +1169,8 @@ package STM32F40x.CAN is
       Arr at 0 range 0 .. 31;
    end record;
 
-   ------------------
-   -- F1R_Register --
-   ------------------
-
-   --  F1R1_FB array element
-   subtype F1R1_FB_Element is STM32F40x.Bit;
-
-   --  F1R1_FB array
-   type F1R1_FB_Field_Array is array (0 .. 31) of F1R1_FB_Element
+   --  F1R_FB array
+   type F1R_FB_Field_Array is array (0 .. 31) of Boolean
      with Component_Size => 1, Size => 32;
 
    --  Filter bank 1 register 1
@@ -1446,10 +1180,10 @@ package STM32F40x.CAN is
       case As_Array is
          when False =>
             --  FB as a value
-            Val : STM32F40x.Word;
+            Val : HAL.UInt32;
          when True =>
             --  FB as an array
-            Arr : F1R1_FB_Field_Array;
+            Arr : F1R_FB_Field_Array;
       end case;
    end record
      with Unchecked_Union, Size => 32, Volatile_Full_Access,
@@ -1460,15 +1194,8 @@ package STM32F40x.CAN is
       Arr at 0 range 0 .. 31;
    end record;
 
-   ------------------
-   -- F2R_Register --
-   ------------------
-
-   --  F2R1_FB array element
-   subtype F2R1_FB_Element is STM32F40x.Bit;
-
-   --  F2R1_FB array
-   type F2R1_FB_Field_Array is array (0 .. 31) of F2R1_FB_Element
+   --  F2R_FB array
+   type F2R_FB_Field_Array is array (0 .. 31) of Boolean
      with Component_Size => 1, Size => 32;
 
    --  Filter bank 2 register 1
@@ -1478,10 +1205,10 @@ package STM32F40x.CAN is
       case As_Array is
          when False =>
             --  FB as a value
-            Val : STM32F40x.Word;
+            Val : HAL.UInt32;
          when True =>
             --  FB as an array
-            Arr : F2R1_FB_Field_Array;
+            Arr : F2R_FB_Field_Array;
       end case;
    end record
      with Unchecked_Union, Size => 32, Volatile_Full_Access,
@@ -1492,15 +1219,8 @@ package STM32F40x.CAN is
       Arr at 0 range 0 .. 31;
    end record;
 
-   ------------------
-   -- F3R_Register --
-   ------------------
-
-   --  F3R1_FB array element
-   subtype F3R1_FB_Element is STM32F40x.Bit;
-
-   --  F3R1_FB array
-   type F3R1_FB_Field_Array is array (0 .. 31) of F3R1_FB_Element
+   --  F3R_FB array
+   type F3R_FB_Field_Array is array (0 .. 31) of Boolean
      with Component_Size => 1, Size => 32;
 
    --  Filter bank 3 register 1
@@ -1510,10 +1230,10 @@ package STM32F40x.CAN is
       case As_Array is
          when False =>
             --  FB as a value
-            Val : STM32F40x.Word;
+            Val : HAL.UInt32;
          when True =>
             --  FB as an array
-            Arr : F3R1_FB_Field_Array;
+            Arr : F3R_FB_Field_Array;
       end case;
    end record
      with Unchecked_Union, Size => 32, Volatile_Full_Access,
@@ -1524,15 +1244,8 @@ package STM32F40x.CAN is
       Arr at 0 range 0 .. 31;
    end record;
 
-   ------------------
-   -- F4R_Register --
-   ------------------
-
-   --  F4R1_FB array element
-   subtype F4R1_FB_Element is STM32F40x.Bit;
-
-   --  F4R1_FB array
-   type F4R1_FB_Field_Array is array (0 .. 31) of F4R1_FB_Element
+   --  F4R_FB array
+   type F4R_FB_Field_Array is array (0 .. 31) of Boolean
      with Component_Size => 1, Size => 32;
 
    --  Filter bank 4 register 1
@@ -1542,10 +1255,10 @@ package STM32F40x.CAN is
       case As_Array is
          when False =>
             --  FB as a value
-            Val : STM32F40x.Word;
+            Val : HAL.UInt32;
          when True =>
             --  FB as an array
-            Arr : F4R1_FB_Field_Array;
+            Arr : F4R_FB_Field_Array;
       end case;
    end record
      with Unchecked_Union, Size => 32, Volatile_Full_Access,
@@ -1556,15 +1269,8 @@ package STM32F40x.CAN is
       Arr at 0 range 0 .. 31;
    end record;
 
-   ------------------
-   -- F5R_Register --
-   ------------------
-
-   --  F5R1_FB array element
-   subtype F5R1_FB_Element is STM32F40x.Bit;
-
-   --  F5R1_FB array
-   type F5R1_FB_Field_Array is array (0 .. 31) of F5R1_FB_Element
+   --  F5R_FB array
+   type F5R_FB_Field_Array is array (0 .. 31) of Boolean
      with Component_Size => 1, Size => 32;
 
    --  Filter bank 5 register 1
@@ -1574,10 +1280,10 @@ package STM32F40x.CAN is
       case As_Array is
          when False =>
             --  FB as a value
-            Val : STM32F40x.Word;
+            Val : HAL.UInt32;
          when True =>
             --  FB as an array
-            Arr : F5R1_FB_Field_Array;
+            Arr : F5R_FB_Field_Array;
       end case;
    end record
      with Unchecked_Union, Size => 32, Volatile_Full_Access,
@@ -1588,15 +1294,8 @@ package STM32F40x.CAN is
       Arr at 0 range 0 .. 31;
    end record;
 
-   ------------------
-   -- F6R_Register --
-   ------------------
-
-   --  F6R1_FB array element
-   subtype F6R1_FB_Element is STM32F40x.Bit;
-
-   --  F6R1_FB array
-   type F6R1_FB_Field_Array is array (0 .. 31) of F6R1_FB_Element
+   --  F6R_FB array
+   type F6R_FB_Field_Array is array (0 .. 31) of Boolean
      with Component_Size => 1, Size => 32;
 
    --  Filter bank 6 register 1
@@ -1606,10 +1305,10 @@ package STM32F40x.CAN is
       case As_Array is
          when False =>
             --  FB as a value
-            Val : STM32F40x.Word;
+            Val : HAL.UInt32;
          when True =>
             --  FB as an array
-            Arr : F6R1_FB_Field_Array;
+            Arr : F6R_FB_Field_Array;
       end case;
    end record
      with Unchecked_Union, Size => 32, Volatile_Full_Access,
@@ -1620,15 +1319,8 @@ package STM32F40x.CAN is
       Arr at 0 range 0 .. 31;
    end record;
 
-   ------------------
-   -- F7R_Register --
-   ------------------
-
-   --  F7R1_FB array element
-   subtype F7R1_FB_Element is STM32F40x.Bit;
-
-   --  F7R1_FB array
-   type F7R1_FB_Field_Array is array (0 .. 31) of F7R1_FB_Element
+   --  F7R_FB array
+   type F7R_FB_Field_Array is array (0 .. 31) of Boolean
      with Component_Size => 1, Size => 32;
 
    --  Filter bank 7 register 1
@@ -1638,10 +1330,10 @@ package STM32F40x.CAN is
       case As_Array is
          when False =>
             --  FB as a value
-            Val : STM32F40x.Word;
+            Val : HAL.UInt32;
          when True =>
             --  FB as an array
-            Arr : F7R1_FB_Field_Array;
+            Arr : F7R_FB_Field_Array;
       end case;
    end record
      with Unchecked_Union, Size => 32, Volatile_Full_Access,
@@ -1652,15 +1344,8 @@ package STM32F40x.CAN is
       Arr at 0 range 0 .. 31;
    end record;
 
-   ------------------
-   -- F8R_Register --
-   ------------------
-
-   --  F8R1_FB array element
-   subtype F8R1_FB_Element is STM32F40x.Bit;
-
-   --  F8R1_FB array
-   type F8R1_FB_Field_Array is array (0 .. 31) of F8R1_FB_Element
+   --  F8R_FB array
+   type F8R_FB_Field_Array is array (0 .. 31) of Boolean
      with Component_Size => 1, Size => 32;
 
    --  Filter bank 8 register 1
@@ -1670,10 +1355,10 @@ package STM32F40x.CAN is
       case As_Array is
          when False =>
             --  FB as a value
-            Val : STM32F40x.Word;
+            Val : HAL.UInt32;
          when True =>
             --  FB as an array
-            Arr : F8R1_FB_Field_Array;
+            Arr : F8R_FB_Field_Array;
       end case;
    end record
      with Unchecked_Union, Size => 32, Volatile_Full_Access,
@@ -1684,15 +1369,8 @@ package STM32F40x.CAN is
       Arr at 0 range 0 .. 31;
    end record;
 
-   ------------------
-   -- F9R_Register --
-   ------------------
-
-   --  F9R1_FB array element
-   subtype F9R1_FB_Element is STM32F40x.Bit;
-
-   --  F9R1_FB array
-   type F9R1_FB_Field_Array is array (0 .. 31) of F9R1_FB_Element
+   --  F9R_FB array
+   type F9R_FB_Field_Array is array (0 .. 31) of Boolean
      with Component_Size => 1, Size => 32;
 
    --  Filter bank 9 register 1
@@ -1702,10 +1380,10 @@ package STM32F40x.CAN is
       case As_Array is
          when False =>
             --  FB as a value
-            Val : STM32F40x.Word;
+            Val : HAL.UInt32;
          when True =>
             --  FB as an array
-            Arr : F9R1_FB_Field_Array;
+            Arr : F9R_FB_Field_Array;
       end case;
    end record
      with Unchecked_Union, Size => 32, Volatile_Full_Access,
@@ -1716,15 +1394,8 @@ package STM32F40x.CAN is
       Arr at 0 range 0 .. 31;
    end record;
 
-   -------------------
-   -- F10R_Register --
-   -------------------
-
-   --  F10R1_FB array element
-   subtype F10R1_FB_Element is STM32F40x.Bit;
-
-   --  F10R1_FB array
-   type F10R1_FB_Field_Array is array (0 .. 31) of F10R1_FB_Element
+   --  F10R_FB array
+   type F10R_FB_Field_Array is array (0 .. 31) of Boolean
      with Component_Size => 1, Size => 32;
 
    --  Filter bank 10 register 1
@@ -1734,10 +1405,10 @@ package STM32F40x.CAN is
       case As_Array is
          when False =>
             --  FB as a value
-            Val : STM32F40x.Word;
+            Val : HAL.UInt32;
          when True =>
             --  FB as an array
-            Arr : F10R1_FB_Field_Array;
+            Arr : F10R_FB_Field_Array;
       end case;
    end record
      with Unchecked_Union, Size => 32, Volatile_Full_Access,
@@ -1748,15 +1419,8 @@ package STM32F40x.CAN is
       Arr at 0 range 0 .. 31;
    end record;
 
-   -------------------
-   -- F11R_Register --
-   -------------------
-
-   --  F11R1_FB array element
-   subtype F11R1_FB_Element is STM32F40x.Bit;
-
-   --  F11R1_FB array
-   type F11R1_FB_Field_Array is array (0 .. 31) of F11R1_FB_Element
+   --  F11R_FB array
+   type F11R_FB_Field_Array is array (0 .. 31) of Boolean
      with Component_Size => 1, Size => 32;
 
    --  Filter bank 11 register 1
@@ -1766,10 +1430,10 @@ package STM32F40x.CAN is
       case As_Array is
          when False =>
             --  FB as a value
-            Val : STM32F40x.Word;
+            Val : HAL.UInt32;
          when True =>
             --  FB as an array
-            Arr : F11R1_FB_Field_Array;
+            Arr : F11R_FB_Field_Array;
       end case;
    end record
      with Unchecked_Union, Size => 32, Volatile_Full_Access,
@@ -1780,15 +1444,8 @@ package STM32F40x.CAN is
       Arr at 0 range 0 .. 31;
    end record;
 
-   -------------------
-   -- F12R_Register --
-   -------------------
-
-   --  F12R1_FB array element
-   subtype F12R1_FB_Element is STM32F40x.Bit;
-
-   --  F12R1_FB array
-   type F12R1_FB_Field_Array is array (0 .. 31) of F12R1_FB_Element
+   --  F12R_FB array
+   type F12R_FB_Field_Array is array (0 .. 31) of Boolean
      with Component_Size => 1, Size => 32;
 
    --  Filter bank 4 register 1
@@ -1798,10 +1455,10 @@ package STM32F40x.CAN is
       case As_Array is
          when False =>
             --  FB as a value
-            Val : STM32F40x.Word;
+            Val : HAL.UInt32;
          when True =>
             --  FB as an array
-            Arr : F12R1_FB_Field_Array;
+            Arr : F12R_FB_Field_Array;
       end case;
    end record
      with Unchecked_Union, Size => 32, Volatile_Full_Access,
@@ -1812,15 +1469,8 @@ package STM32F40x.CAN is
       Arr at 0 range 0 .. 31;
    end record;
 
-   -------------------
-   -- F13R_Register --
-   -------------------
-
-   --  F13R1_FB array element
-   subtype F13R1_FB_Element is STM32F40x.Bit;
-
-   --  F13R1_FB array
-   type F13R1_FB_Field_Array is array (0 .. 31) of F13R1_FB_Element
+   --  F13R_FB array
+   type F13R_FB_Field_Array is array (0 .. 31) of Boolean
      with Component_Size => 1, Size => 32;
 
    --  Filter bank 13 register 1
@@ -1830,10 +1480,10 @@ package STM32F40x.CAN is
       case As_Array is
          when False =>
             --  FB as a value
-            Val : STM32F40x.Word;
+            Val : HAL.UInt32;
          when True =>
             --  FB as an array
-            Arr : F13R1_FB_Field_Array;
+            Arr : F13R_FB_Field_Array;
       end case;
    end record
      with Unchecked_Union, Size => 32, Volatile_Full_Access,
@@ -1844,15 +1494,8 @@ package STM32F40x.CAN is
       Arr at 0 range 0 .. 31;
    end record;
 
-   -------------------
-   -- F14R_Register --
-   -------------------
-
-   --  F14R1_FB array element
-   subtype F14R1_FB_Element is STM32F40x.Bit;
-
-   --  F14R1_FB array
-   type F14R1_FB_Field_Array is array (0 .. 31) of F14R1_FB_Element
+   --  F14R_FB array
+   type F14R_FB_Field_Array is array (0 .. 31) of Boolean
      with Component_Size => 1, Size => 32;
 
    --  Filter bank 14 register 1
@@ -1862,10 +1505,10 @@ package STM32F40x.CAN is
       case As_Array is
          when False =>
             --  FB as a value
-            Val : STM32F40x.Word;
+            Val : HAL.UInt32;
          when True =>
             --  FB as an array
-            Arr : F14R1_FB_Field_Array;
+            Arr : F14R_FB_Field_Array;
       end case;
    end record
      with Unchecked_Union, Size => 32, Volatile_Full_Access,
@@ -1876,15 +1519,8 @@ package STM32F40x.CAN is
       Arr at 0 range 0 .. 31;
    end record;
 
-   -------------------
-   -- F15R_Register --
-   -------------------
-
-   --  F15R1_FB array element
-   subtype F15R1_FB_Element is STM32F40x.Bit;
-
-   --  F15R1_FB array
-   type F15R1_FB_Field_Array is array (0 .. 31) of F15R1_FB_Element
+   --  F15R_FB array
+   type F15R_FB_Field_Array is array (0 .. 31) of Boolean
      with Component_Size => 1, Size => 32;
 
    --  Filter bank 15 register 1
@@ -1894,10 +1530,10 @@ package STM32F40x.CAN is
       case As_Array is
          when False =>
             --  FB as a value
-            Val : STM32F40x.Word;
+            Val : HAL.UInt32;
          when True =>
             --  FB as an array
-            Arr : F15R1_FB_Field_Array;
+            Arr : F15R_FB_Field_Array;
       end case;
    end record
      with Unchecked_Union, Size => 32, Volatile_Full_Access,
@@ -1908,15 +1544,8 @@ package STM32F40x.CAN is
       Arr at 0 range 0 .. 31;
    end record;
 
-   -------------------
-   -- F16R_Register --
-   -------------------
-
-   --  F16R1_FB array element
-   subtype F16R1_FB_Element is STM32F40x.Bit;
-
-   --  F16R1_FB array
-   type F16R1_FB_Field_Array is array (0 .. 31) of F16R1_FB_Element
+   --  F16R_FB array
+   type F16R_FB_Field_Array is array (0 .. 31) of Boolean
      with Component_Size => 1, Size => 32;
 
    --  Filter bank 16 register 1
@@ -1926,10 +1555,10 @@ package STM32F40x.CAN is
       case As_Array is
          when False =>
             --  FB as a value
-            Val : STM32F40x.Word;
+            Val : HAL.UInt32;
          when True =>
             --  FB as an array
-            Arr : F16R1_FB_Field_Array;
+            Arr : F16R_FB_Field_Array;
       end case;
    end record
      with Unchecked_Union, Size => 32, Volatile_Full_Access,
@@ -1940,15 +1569,8 @@ package STM32F40x.CAN is
       Arr at 0 range 0 .. 31;
    end record;
 
-   -------------------
-   -- F17R_Register --
-   -------------------
-
-   --  F17R1_FB array element
-   subtype F17R1_FB_Element is STM32F40x.Bit;
-
-   --  F17R1_FB array
-   type F17R1_FB_Field_Array is array (0 .. 31) of F17R1_FB_Element
+   --  F17R_FB array
+   type F17R_FB_Field_Array is array (0 .. 31) of Boolean
      with Component_Size => 1, Size => 32;
 
    --  Filter bank 17 register 1
@@ -1958,10 +1580,10 @@ package STM32F40x.CAN is
       case As_Array is
          when False =>
             --  FB as a value
-            Val : STM32F40x.Word;
+            Val : HAL.UInt32;
          when True =>
             --  FB as an array
-            Arr : F17R1_FB_Field_Array;
+            Arr : F17R_FB_Field_Array;
       end case;
    end record
      with Unchecked_Union, Size => 32, Volatile_Full_Access,
@@ -1972,15 +1594,8 @@ package STM32F40x.CAN is
       Arr at 0 range 0 .. 31;
    end record;
 
-   -------------------
-   -- F18R_Register --
-   -------------------
-
-   --  F18R1_FB array element
-   subtype F18R1_FB_Element is STM32F40x.Bit;
-
-   --  F18R1_FB array
-   type F18R1_FB_Field_Array is array (0 .. 31) of F18R1_FB_Element
+   --  F18R_FB array
+   type F18R_FB_Field_Array is array (0 .. 31) of Boolean
      with Component_Size => 1, Size => 32;
 
    --  Filter bank 18 register 1
@@ -1990,10 +1605,10 @@ package STM32F40x.CAN is
       case As_Array is
          when False =>
             --  FB as a value
-            Val : STM32F40x.Word;
+            Val : HAL.UInt32;
          when True =>
             --  FB as an array
-            Arr : F18R1_FB_Field_Array;
+            Arr : F18R_FB_Field_Array;
       end case;
    end record
      with Unchecked_Union, Size => 32, Volatile_Full_Access,
@@ -2004,15 +1619,8 @@ package STM32F40x.CAN is
       Arr at 0 range 0 .. 31;
    end record;
 
-   -------------------
-   -- F19R_Register --
-   -------------------
-
-   --  F19R1_FB array element
-   subtype F19R1_FB_Element is STM32F40x.Bit;
-
-   --  F19R1_FB array
-   type F19R1_FB_Field_Array is array (0 .. 31) of F19R1_FB_Element
+   --  F19R_FB array
+   type F19R_FB_Field_Array is array (0 .. 31) of Boolean
      with Component_Size => 1, Size => 32;
 
    --  Filter bank 19 register 1
@@ -2022,10 +1630,10 @@ package STM32F40x.CAN is
       case As_Array is
          when False =>
             --  FB as a value
-            Val : STM32F40x.Word;
+            Val : HAL.UInt32;
          when True =>
             --  FB as an array
-            Arr : F19R1_FB_Field_Array;
+            Arr : F19R_FB_Field_Array;
       end case;
    end record
      with Unchecked_Union, Size => 32, Volatile_Full_Access,
@@ -2036,15 +1644,8 @@ package STM32F40x.CAN is
       Arr at 0 range 0 .. 31;
    end record;
 
-   -------------------
-   -- F20R_Register --
-   -------------------
-
-   --  F20R1_FB array element
-   subtype F20R1_FB_Element is STM32F40x.Bit;
-
-   --  F20R1_FB array
-   type F20R1_FB_Field_Array is array (0 .. 31) of F20R1_FB_Element
+   --  F20R_FB array
+   type F20R_FB_Field_Array is array (0 .. 31) of Boolean
      with Component_Size => 1, Size => 32;
 
    --  Filter bank 20 register 1
@@ -2054,10 +1655,10 @@ package STM32F40x.CAN is
       case As_Array is
          when False =>
             --  FB as a value
-            Val : STM32F40x.Word;
+            Val : HAL.UInt32;
          when True =>
             --  FB as an array
-            Arr : F20R1_FB_Field_Array;
+            Arr : F20R_FB_Field_Array;
       end case;
    end record
      with Unchecked_Union, Size => 32, Volatile_Full_Access,
@@ -2068,15 +1669,8 @@ package STM32F40x.CAN is
       Arr at 0 range 0 .. 31;
    end record;
 
-   -------------------
-   -- F21R_Register --
-   -------------------
-
-   --  F21R1_FB array element
-   subtype F21R1_FB_Element is STM32F40x.Bit;
-
-   --  F21R1_FB array
-   type F21R1_FB_Field_Array is array (0 .. 31) of F21R1_FB_Element
+   --  F21R_FB array
+   type F21R_FB_Field_Array is array (0 .. 31) of Boolean
      with Component_Size => 1, Size => 32;
 
    --  Filter bank 21 register 1
@@ -2086,10 +1680,10 @@ package STM32F40x.CAN is
       case As_Array is
          when False =>
             --  FB as a value
-            Val : STM32F40x.Word;
+            Val : HAL.UInt32;
          when True =>
             --  FB as an array
-            Arr : F21R1_FB_Field_Array;
+            Arr : F21R_FB_Field_Array;
       end case;
    end record
      with Unchecked_Union, Size => 32, Volatile_Full_Access,
@@ -2100,15 +1694,8 @@ package STM32F40x.CAN is
       Arr at 0 range 0 .. 31;
    end record;
 
-   -------------------
-   -- F22R_Register --
-   -------------------
-
-   --  F22R1_FB array element
-   subtype F22R1_FB_Element is STM32F40x.Bit;
-
-   --  F22R1_FB array
-   type F22R1_FB_Field_Array is array (0 .. 31) of F22R1_FB_Element
+   --  F22R_FB array
+   type F22R_FB_Field_Array is array (0 .. 31) of Boolean
      with Component_Size => 1, Size => 32;
 
    --  Filter bank 22 register 1
@@ -2118,10 +1705,10 @@ package STM32F40x.CAN is
       case As_Array is
          when False =>
             --  FB as a value
-            Val : STM32F40x.Word;
+            Val : HAL.UInt32;
          when True =>
             --  FB as an array
-            Arr : F22R1_FB_Field_Array;
+            Arr : F22R_FB_Field_Array;
       end case;
    end record
      with Unchecked_Union, Size => 32, Volatile_Full_Access,
@@ -2132,15 +1719,8 @@ package STM32F40x.CAN is
       Arr at 0 range 0 .. 31;
    end record;
 
-   -------------------
-   -- F23R_Register --
-   -------------------
-
-   --  F23R1_FB array element
-   subtype F23R1_FB_Element is STM32F40x.Bit;
-
-   --  F23R1_FB array
-   type F23R1_FB_Field_Array is array (0 .. 31) of F23R1_FB_Element
+   --  F23R_FB array
+   type F23R_FB_Field_Array is array (0 .. 31) of Boolean
      with Component_Size => 1, Size => 32;
 
    --  Filter bank 23 register 1
@@ -2150,10 +1730,10 @@ package STM32F40x.CAN is
       case As_Array is
          when False =>
             --  FB as a value
-            Val : STM32F40x.Word;
+            Val : HAL.UInt32;
          when True =>
             --  FB as an array
-            Arr : F23R1_FB_Field_Array;
+            Arr : F23R_FB_Field_Array;
       end case;
    end record
      with Unchecked_Union, Size => 32, Volatile_Full_Access,
@@ -2164,15 +1744,8 @@ package STM32F40x.CAN is
       Arr at 0 range 0 .. 31;
    end record;
 
-   -------------------
-   -- F24R_Register --
-   -------------------
-
-   --  F24R1_FB array element
-   subtype F24R1_FB_Element is STM32F40x.Bit;
-
-   --  F24R1_FB array
-   type F24R1_FB_Field_Array is array (0 .. 31) of F24R1_FB_Element
+   --  F24R_FB array
+   type F24R_FB_Field_Array is array (0 .. 31) of Boolean
      with Component_Size => 1, Size => 32;
 
    --  Filter bank 24 register 1
@@ -2182,10 +1755,10 @@ package STM32F40x.CAN is
       case As_Array is
          when False =>
             --  FB as a value
-            Val : STM32F40x.Word;
+            Val : HAL.UInt32;
          when True =>
             --  FB as an array
-            Arr : F24R1_FB_Field_Array;
+            Arr : F24R_FB_Field_Array;
       end case;
    end record
      with Unchecked_Union, Size => 32, Volatile_Full_Access,
@@ -2196,15 +1769,8 @@ package STM32F40x.CAN is
       Arr at 0 range 0 .. 31;
    end record;
 
-   -------------------
-   -- F25R_Register --
-   -------------------
-
-   --  F25R1_FB array element
-   subtype F25R1_FB_Element is STM32F40x.Bit;
-
-   --  F25R1_FB array
-   type F25R1_FB_Field_Array is array (0 .. 31) of F25R1_FB_Element
+   --  F25R_FB array
+   type F25R_FB_Field_Array is array (0 .. 31) of Boolean
      with Component_Size => 1, Size => 32;
 
    --  Filter bank 25 register 1
@@ -2214,10 +1780,10 @@ package STM32F40x.CAN is
       case As_Array is
          when False =>
             --  FB as a value
-            Val : STM32F40x.Word;
+            Val : HAL.UInt32;
          when True =>
             --  FB as an array
-            Arr : F25R1_FB_Field_Array;
+            Arr : F25R_FB_Field_Array;
       end case;
    end record
      with Unchecked_Union, Size => 32, Volatile_Full_Access,
@@ -2228,15 +1794,8 @@ package STM32F40x.CAN is
       Arr at 0 range 0 .. 31;
    end record;
 
-   -------------------
-   -- F26R_Register --
-   -------------------
-
-   --  F26R1_FB array element
-   subtype F26R1_FB_Element is STM32F40x.Bit;
-
-   --  F26R1_FB array
-   type F26R1_FB_Field_Array is array (0 .. 31) of F26R1_FB_Element
+   --  F26R_FB array
+   type F26R_FB_Field_Array is array (0 .. 31) of Boolean
      with Component_Size => 1, Size => 32;
 
    --  Filter bank 26 register 1
@@ -2246,10 +1805,10 @@ package STM32F40x.CAN is
       case As_Array is
          when False =>
             --  FB as a value
-            Val : STM32F40x.Word;
+            Val : HAL.UInt32;
          when True =>
             --  FB as an array
-            Arr : F26R1_FB_Field_Array;
+            Arr : F26R_FB_Field_Array;
       end case;
    end record
      with Unchecked_Union, Size => 32, Volatile_Full_Access,
@@ -2260,15 +1819,8 @@ package STM32F40x.CAN is
       Arr at 0 range 0 .. 31;
    end record;
 
-   -------------------
-   -- F27R_Register --
-   -------------------
-
-   --  F27R1_FB array element
-   subtype F27R1_FB_Element is STM32F40x.Bit;
-
-   --  F27R1_FB array
-   type F27R1_FB_Field_Array is array (0 .. 31) of F27R1_FB_Element
+   --  F27R_FB array
+   type F27R_FB_Field_Array is array (0 .. 31) of Boolean
      with Component_Size => 1, Size => 32;
 
    --  Filter bank 27 register 1
@@ -2278,10 +1830,10 @@ package STM32F40x.CAN is
       case As_Array is
          when False =>
             --  FB as a value
-            Val : STM32F40x.Word;
+            Val : HAL.UInt32;
          when True =>
             --  FB as an array
-            Arr : F27R1_FB_Field_Array;
+            Arr : F27R_FB_Field_Array;
       end case;
    end record
      with Unchecked_Union, Size => 32, Volatile_Full_Access,
@@ -2299,284 +1851,284 @@ package STM32F40x.CAN is
    --  Controller area network
    type CAN_Peripheral is record
       --  master control register
-      MCR   : MCR_Register;
+      MCR   : aliased MCR_Register;
       --  master status register
-      MSR   : MSR_Register;
+      MSR   : aliased MSR_Register;
       --  transmit status register
-      TSR   : TSR_Register;
+      TSR   : aliased TSR_Register;
       --  receive FIFO 0 register
-      RF0R  : RF0R_Register;
+      RF0R  : aliased RF0R_Register;
       --  receive FIFO 1 register
-      RF1R  : RF1R_Register;
+      RF1R  : aliased RF1R_Register;
       --  interrupt enable register
-      IER   : IER_Register;
+      IER   : aliased IER_Register;
       --  interrupt enable register
-      ESR   : ESR_Register;
+      ESR   : aliased ESR_Register;
       --  bit timing register
-      BTR   : BTR_Register;
+      BTR   : aliased BTR_Register;
       --  TX mailbox identifier register
-      TI0R  : TI0R_Register;
+      TI0R  : aliased TI0R_Register;
       --  mailbox data length control and time stamp register
-      TDT0R : TDT0R_Register;
+      TDT0R : aliased TDT0R_Register;
       --  mailbox data low register
-      TDL0R : TDL0R_Register;
+      TDL0R : aliased TDL0R_Register;
       --  mailbox data high register
-      TDH0R : TDH0R_Register;
+      TDH0R : aliased TDH0R_Register;
       --  mailbox identifier register
-      TI1R  : TI1R_Register;
+      TI1R  : aliased TI1R_Register;
       --  mailbox data length control and time stamp register
-      TDT1R : TDT1R_Register;
+      TDT1R : aliased TDT1R_Register;
       --  mailbox data low register
-      TDL1R : TDL1R_Register;
+      TDL1R : aliased TDL1R_Register;
       --  mailbox data high register
-      TDH1R : TDH1R_Register;
+      TDH1R : aliased TDH1R_Register;
       --  mailbox identifier register
-      TI2R  : TI2R_Register;
+      TI2R  : aliased TI2R_Register;
       --  mailbox data length control and time stamp register
-      TDT2R : TDT2R_Register;
+      TDT2R : aliased TDT2R_Register;
       --  mailbox data low register
-      TDL2R : TDL2R_Register;
+      TDL2R : aliased TDL2R_Register;
       --  mailbox data high register
-      TDH2R : TDH2R_Register;
+      TDH2R : aliased TDH2R_Register;
       --  receive FIFO mailbox identifier register
-      RI0R  : RI0R_Register;
+      RI0R  : aliased RI0R_Register;
       --  mailbox data high register
-      RDT0R : RDT0R_Register;
+      RDT0R : aliased RDT0R_Register;
       --  mailbox data high register
-      RDL0R : RDL0R_Register;
+      RDL0R : aliased RDL0R_Register;
       --  receive FIFO mailbox data high register
-      RDH0R : RDH0R_Register;
+      RDH0R : aliased RDH0R_Register;
       --  mailbox data high register
-      RI1R  : RI1R_Register;
+      RI1R  : aliased RI1R_Register;
       --  mailbox data high register
-      RDT1R : RDT1R_Register;
+      RDT1R : aliased RDT1R_Register;
       --  mailbox data high register
-      RDL1R : RDL1R_Register;
+      RDL1R : aliased RDL1R_Register;
       --  mailbox data high register
-      RDH1R : RDH1R_Register;
+      RDH1R : aliased RDH1R_Register;
       --  filter master register
-      FMR   : FMR_Register;
+      FMR   : aliased FMR_Register;
       --  filter mode register
-      FM1R  : FM1R_Register;
+      FM1R  : aliased FM1R_Register;
       --  filter scale register
-      FS1R  : FS1R_Register;
+      FS1R  : aliased FS1R_Register;
       --  filter FIFO assignment register
-      FFA1R : FFA1R_Register;
+      FFA1R : aliased FFA1R_Register;
       --  filter activation register
-      FA1R  : FA1R_Register;
+      FA1R  : aliased FA1R_Register;
       --  Filter bank 0 register 1
-      F0R1  : F0R_Register;
+      F0R1  : aliased F0R_Register;
       --  Filter bank 0 register 2
-      F0R2  : F0R_Register;
+      F0R2  : aliased F0R_Register;
       --  Filter bank 1 register 1
-      F1R1  : F1R_Register;
+      F1R1  : aliased F1R_Register;
       --  Filter bank 1 register 2
-      F1R2  : F1R_Register;
+      F1R2  : aliased F1R_Register;
       --  Filter bank 2 register 1
-      F2R1  : F2R_Register;
+      F2R1  : aliased F2R_Register;
       --  Filter bank 2 register 2
-      F2R2  : F2R_Register;
+      F2R2  : aliased F2R_Register;
       --  Filter bank 3 register 1
-      F3R1  : F3R_Register;
+      F3R1  : aliased F3R_Register;
       --  Filter bank 3 register 2
-      F3R2  : F3R_Register;
+      F3R2  : aliased F3R_Register;
       --  Filter bank 4 register 1
-      F4R1  : F4R_Register;
+      F4R1  : aliased F4R_Register;
       --  Filter bank 4 register 2
-      F4R2  : F4R_Register;
+      F4R2  : aliased F4R_Register;
       --  Filter bank 5 register 1
-      F5R1  : F5R_Register;
+      F5R1  : aliased F5R_Register;
       --  Filter bank 5 register 2
-      F5R2  : F5R_Register;
+      F5R2  : aliased F5R_Register;
       --  Filter bank 6 register 1
-      F6R1  : F6R_Register;
+      F6R1  : aliased F6R_Register;
       --  Filter bank 6 register 2
-      F6R2  : F6R_Register;
+      F6R2  : aliased F6R_Register;
       --  Filter bank 7 register 1
-      F7R1  : F7R_Register;
+      F7R1  : aliased F7R_Register;
       --  Filter bank 7 register 2
-      F7R2  : F7R_Register;
+      F7R2  : aliased F7R_Register;
       --  Filter bank 8 register 1
-      F8R1  : F8R_Register;
+      F8R1  : aliased F8R_Register;
       --  Filter bank 8 register 2
-      F8R2  : F8R_Register;
+      F8R2  : aliased F8R_Register;
       --  Filter bank 9 register 1
-      F9R1  : F9R_Register;
+      F9R1  : aliased F9R_Register;
       --  Filter bank 9 register 2
-      F9R2  : F9R_Register;
+      F9R2  : aliased F9R_Register;
       --  Filter bank 10 register 1
-      F10R1 : F10R_Register;
+      F10R1 : aliased F10R_Register;
       --  Filter bank 10 register 2
-      F10R2 : F10R_Register;
+      F10R2 : aliased F10R_Register;
       --  Filter bank 11 register 1
-      F11R1 : F11R_Register;
+      F11R1 : aliased F11R_Register;
       --  Filter bank 11 register 2
-      F11R2 : F11R_Register;
+      F11R2 : aliased F11R_Register;
       --  Filter bank 4 register 1
-      F12R1 : F12R_Register;
+      F12R1 : aliased F12R_Register;
       --  Filter bank 12 register 2
-      F12R2 : F12R_Register;
+      F12R2 : aliased F12R_Register;
       --  Filter bank 13 register 1
-      F13R1 : F13R_Register;
+      F13R1 : aliased F13R_Register;
       --  Filter bank 13 register 2
-      F13R2 : F13R_Register;
+      F13R2 : aliased F13R_Register;
       --  Filter bank 14 register 1
-      F14R1 : F14R_Register;
+      F14R1 : aliased F14R_Register;
       --  Filter bank 14 register 2
-      F14R2 : F14R_Register;
+      F14R2 : aliased F14R_Register;
       --  Filter bank 15 register 1
-      F15R1 : F15R_Register;
+      F15R1 : aliased F15R_Register;
       --  Filter bank 15 register 2
-      F15R2 : F15R_Register;
+      F15R2 : aliased F15R_Register;
       --  Filter bank 16 register 1
-      F16R1 : F16R_Register;
+      F16R1 : aliased F16R_Register;
       --  Filter bank 16 register 2
-      F16R2 : F16R_Register;
+      F16R2 : aliased F16R_Register;
       --  Filter bank 17 register 1
-      F17R1 : F17R_Register;
+      F17R1 : aliased F17R_Register;
       --  Filter bank 17 register 2
-      F17R2 : F17R_Register;
+      F17R2 : aliased F17R_Register;
       --  Filter bank 18 register 1
-      F18R1 : F18R_Register;
+      F18R1 : aliased F18R_Register;
       --  Filter bank 18 register 2
-      F18R2 : F18R_Register;
+      F18R2 : aliased F18R_Register;
       --  Filter bank 19 register 1
-      F19R1 : F19R_Register;
+      F19R1 : aliased F19R_Register;
       --  Filter bank 19 register 2
-      F19R2 : F19R_Register;
+      F19R2 : aliased F19R_Register;
       --  Filter bank 20 register 1
-      F20R1 : F20R_Register;
+      F20R1 : aliased F20R_Register;
       --  Filter bank 20 register 2
-      F20R2 : F20R_Register;
+      F20R2 : aliased F20R_Register;
       --  Filter bank 21 register 1
-      F21R1 : F21R_Register;
+      F21R1 : aliased F21R_Register;
       --  Filter bank 21 register 2
-      F21R2 : F21R_Register;
+      F21R2 : aliased F21R_Register;
       --  Filter bank 22 register 1
-      F22R1 : F22R_Register;
+      F22R1 : aliased F22R_Register;
       --  Filter bank 22 register 2
-      F22R2 : F22R_Register;
+      F22R2 : aliased F22R_Register;
       --  Filter bank 23 register 1
-      F23R1 : F23R_Register;
+      F23R1 : aliased F23R_Register;
       --  Filter bank 23 register 2
-      F23R2 : F23R_Register;
+      F23R2 : aliased F23R_Register;
       --  Filter bank 24 register 1
-      F24R1 : F24R_Register;
+      F24R1 : aliased F24R_Register;
       --  Filter bank 24 register 2
-      F24R2 : F24R_Register;
+      F24R2 : aliased F24R_Register;
       --  Filter bank 25 register 1
-      F25R1 : F25R_Register;
+      F25R1 : aliased F25R_Register;
       --  Filter bank 25 register 2
-      F25R2 : F25R_Register;
+      F25R2 : aliased F25R_Register;
       --  Filter bank 26 register 1
-      F26R1 : F26R_Register;
+      F26R1 : aliased F26R_Register;
       --  Filter bank 26 register 2
-      F26R2 : F26R_Register;
+      F26R2 : aliased F26R_Register;
       --  Filter bank 27 register 1
-      F27R1 : F27R_Register;
+      F27R1 : aliased F27R_Register;
       --  Filter bank 27 register 2
-      F27R2 : F27R_Register;
+      F27R2 : aliased F27R_Register;
    end record
      with Volatile;
 
    for CAN_Peripheral use record
-      MCR   at 0 range 0 .. 31;
-      MSR   at 4 range 0 .. 31;
-      TSR   at 8 range 0 .. 31;
-      RF0R  at 12 range 0 .. 31;
-      RF1R  at 16 range 0 .. 31;
-      IER   at 20 range 0 .. 31;
-      ESR   at 24 range 0 .. 31;
-      BTR   at 28 range 0 .. 31;
-      TI0R  at 384 range 0 .. 31;
-      TDT0R at 388 range 0 .. 31;
-      TDL0R at 392 range 0 .. 31;
-      TDH0R at 396 range 0 .. 31;
-      TI1R  at 400 range 0 .. 31;
-      TDT1R at 404 range 0 .. 31;
-      TDL1R at 408 range 0 .. 31;
-      TDH1R at 412 range 0 .. 31;
-      TI2R  at 416 range 0 .. 31;
-      TDT2R at 420 range 0 .. 31;
-      TDL2R at 424 range 0 .. 31;
-      TDH2R at 428 range 0 .. 31;
-      RI0R  at 432 range 0 .. 31;
-      RDT0R at 436 range 0 .. 31;
-      RDL0R at 440 range 0 .. 31;
-      RDH0R at 444 range 0 .. 31;
-      RI1R  at 448 range 0 .. 31;
-      RDT1R at 452 range 0 .. 31;
-      RDL1R at 456 range 0 .. 31;
-      RDH1R at 460 range 0 .. 31;
-      FMR   at 512 range 0 .. 31;
-      FM1R  at 516 range 0 .. 31;
-      FS1R  at 524 range 0 .. 31;
-      FFA1R at 532 range 0 .. 31;
-      FA1R  at 540 range 0 .. 31;
-      F0R1  at 576 range 0 .. 31;
-      F0R2  at 580 range 0 .. 31;
-      F1R1  at 584 range 0 .. 31;
-      F1R2  at 588 range 0 .. 31;
-      F2R1  at 592 range 0 .. 31;
-      F2R2  at 596 range 0 .. 31;
-      F3R1  at 600 range 0 .. 31;
-      F3R2  at 604 range 0 .. 31;
-      F4R1  at 608 range 0 .. 31;
-      F4R2  at 612 range 0 .. 31;
-      F5R1  at 616 range 0 .. 31;
-      F5R2  at 620 range 0 .. 31;
-      F6R1  at 624 range 0 .. 31;
-      F6R2  at 628 range 0 .. 31;
-      F7R1  at 632 range 0 .. 31;
-      F7R2  at 636 range 0 .. 31;
-      F8R1  at 640 range 0 .. 31;
-      F8R2  at 644 range 0 .. 31;
-      F9R1  at 648 range 0 .. 31;
-      F9R2  at 652 range 0 .. 31;
-      F10R1 at 656 range 0 .. 31;
-      F10R2 at 660 range 0 .. 31;
-      F11R1 at 664 range 0 .. 31;
-      F11R2 at 668 range 0 .. 31;
-      F12R1 at 672 range 0 .. 31;
-      F12R2 at 676 range 0 .. 31;
-      F13R1 at 680 range 0 .. 31;
-      F13R2 at 684 range 0 .. 31;
-      F14R1 at 688 range 0 .. 31;
-      F14R2 at 692 range 0 .. 31;
-      F15R1 at 696 range 0 .. 31;
-      F15R2 at 700 range 0 .. 31;
-      F16R1 at 704 range 0 .. 31;
-      F16R2 at 708 range 0 .. 31;
-      F17R1 at 712 range 0 .. 31;
-      F17R2 at 716 range 0 .. 31;
-      F18R1 at 720 range 0 .. 31;
-      F18R2 at 724 range 0 .. 31;
-      F19R1 at 728 range 0 .. 31;
-      F19R2 at 732 range 0 .. 31;
-      F20R1 at 736 range 0 .. 31;
-      F20R2 at 740 range 0 .. 31;
-      F21R1 at 744 range 0 .. 31;
-      F21R2 at 748 range 0 .. 31;
-      F22R1 at 752 range 0 .. 31;
-      F22R2 at 756 range 0 .. 31;
-      F23R1 at 760 range 0 .. 31;
-      F23R2 at 764 range 0 .. 31;
-      F24R1 at 768 range 0 .. 31;
-      F24R2 at 772 range 0 .. 31;
-      F25R1 at 776 range 0 .. 31;
-      F25R2 at 780 range 0 .. 31;
-      F26R1 at 784 range 0 .. 31;
-      F26R2 at 788 range 0 .. 31;
-      F27R1 at 792 range 0 .. 31;
-      F27R2 at 796 range 0 .. 31;
+      MCR   at 16#0# range 0 .. 31;
+      MSR   at 16#4# range 0 .. 31;
+      TSR   at 16#8# range 0 .. 31;
+      RF0R  at 16#C# range 0 .. 31;
+      RF1R  at 16#10# range 0 .. 31;
+      IER   at 16#14# range 0 .. 31;
+      ESR   at 16#18# range 0 .. 31;
+      BTR   at 16#1C# range 0 .. 31;
+      TI0R  at 16#180# range 0 .. 31;
+      TDT0R at 16#184# range 0 .. 31;
+      TDL0R at 16#188# range 0 .. 31;
+      TDH0R at 16#18C# range 0 .. 31;
+      TI1R  at 16#190# range 0 .. 31;
+      TDT1R at 16#194# range 0 .. 31;
+      TDL1R at 16#198# range 0 .. 31;
+      TDH1R at 16#19C# range 0 .. 31;
+      TI2R  at 16#1A0# range 0 .. 31;
+      TDT2R at 16#1A4# range 0 .. 31;
+      TDL2R at 16#1A8# range 0 .. 31;
+      TDH2R at 16#1AC# range 0 .. 31;
+      RI0R  at 16#1B0# range 0 .. 31;
+      RDT0R at 16#1B4# range 0 .. 31;
+      RDL0R at 16#1B8# range 0 .. 31;
+      RDH0R at 16#1BC# range 0 .. 31;
+      RI1R  at 16#1C0# range 0 .. 31;
+      RDT1R at 16#1C4# range 0 .. 31;
+      RDL1R at 16#1C8# range 0 .. 31;
+      RDH1R at 16#1CC# range 0 .. 31;
+      FMR   at 16#200# range 0 .. 31;
+      FM1R  at 16#204# range 0 .. 31;
+      FS1R  at 16#20C# range 0 .. 31;
+      FFA1R at 16#214# range 0 .. 31;
+      FA1R  at 16#21C# range 0 .. 31;
+      F0R1  at 16#240# range 0 .. 31;
+      F0R2  at 16#244# range 0 .. 31;
+      F1R1  at 16#248# range 0 .. 31;
+      F1R2  at 16#24C# range 0 .. 31;
+      F2R1  at 16#250# range 0 .. 31;
+      F2R2  at 16#254# range 0 .. 31;
+      F3R1  at 16#258# range 0 .. 31;
+      F3R2  at 16#25C# range 0 .. 31;
+      F4R1  at 16#260# range 0 .. 31;
+      F4R2  at 16#264# range 0 .. 31;
+      F5R1  at 16#268# range 0 .. 31;
+      F5R2  at 16#26C# range 0 .. 31;
+      F6R1  at 16#270# range 0 .. 31;
+      F6R2  at 16#274# range 0 .. 31;
+      F7R1  at 16#278# range 0 .. 31;
+      F7R2  at 16#27C# range 0 .. 31;
+      F8R1  at 16#280# range 0 .. 31;
+      F8R2  at 16#284# range 0 .. 31;
+      F9R1  at 16#288# range 0 .. 31;
+      F9R2  at 16#28C# range 0 .. 31;
+      F10R1 at 16#290# range 0 .. 31;
+      F10R2 at 16#294# range 0 .. 31;
+      F11R1 at 16#298# range 0 .. 31;
+      F11R2 at 16#29C# range 0 .. 31;
+      F12R1 at 16#2A0# range 0 .. 31;
+      F12R2 at 16#2A4# range 0 .. 31;
+      F13R1 at 16#2A8# range 0 .. 31;
+      F13R2 at 16#2AC# range 0 .. 31;
+      F14R1 at 16#2B0# range 0 .. 31;
+      F14R2 at 16#2B4# range 0 .. 31;
+      F15R1 at 16#2B8# range 0 .. 31;
+      F15R2 at 16#2BC# range 0 .. 31;
+      F16R1 at 16#2C0# range 0 .. 31;
+      F16R2 at 16#2C4# range 0 .. 31;
+      F17R1 at 16#2C8# range 0 .. 31;
+      F17R2 at 16#2CC# range 0 .. 31;
+      F18R1 at 16#2D0# range 0 .. 31;
+      F18R2 at 16#2D4# range 0 .. 31;
+      F19R1 at 16#2D8# range 0 .. 31;
+      F19R2 at 16#2DC# range 0 .. 31;
+      F20R1 at 16#2E0# range 0 .. 31;
+      F20R2 at 16#2E4# range 0 .. 31;
+      F21R1 at 16#2E8# range 0 .. 31;
+      F21R2 at 16#2EC# range 0 .. 31;
+      F22R1 at 16#2F0# range 0 .. 31;
+      F22R2 at 16#2F4# range 0 .. 31;
+      F23R1 at 16#2F8# range 0 .. 31;
+      F23R2 at 16#2FC# range 0 .. 31;
+      F24R1 at 16#300# range 0 .. 31;
+      F24R2 at 16#304# range 0 .. 31;
+      F25R1 at 16#308# range 0 .. 31;
+      F25R2 at 16#30C# range 0 .. 31;
+      F26R1 at 16#310# range 0 .. 31;
+      F26R2 at 16#314# range 0 .. 31;
+      F27R1 at 16#318# range 0 .. 31;
+      F27R2 at 16#31C# range 0 .. 31;
    end record;
 
    --  Controller area network
    CAN1_Periph : aliased CAN_Peripheral
-     with Import, Address => CAN1_Base;
+     with Import, Address => System'To_Address (16#40006400#);
 
    --  Controller area network
    CAN2_Periph : aliased CAN_Peripheral
-     with Import, Address => CAN2_Base;
+     with Import, Address => System'To_Address (16#40006800#);
 
-end STM32F40x.CAN;
+end STM32_SVD.CAN;

@@ -1,31 +1,21 @@
 --  This spec has been automatically generated from STM32F40x.svd
---  see https://github.com/simonjwright/svd2ada
 
 pragma Restrictions (No_Elaboration_Code);
 pragma Ada_2012;
+pragma Style_Checks (Off);
 
+with HAL;
 with System;
 
-package STM32F40x.EXTI is
+package STM32_SVD.EXTI is
    pragma Preelaborate;
 
    ---------------
    -- Registers --
    ---------------
 
-   ------------------
-   -- IMR_Register --
-   ------------------
-
-   ------------
-   -- IMR.MR --
-   ------------
-
-   --  IMR_MR array element
-   subtype IMR_MR_Element is STM32F40x.Bit;
-
    --  IMR_MR array
-   type IMR_MR_Field_Array is array (0 .. 22) of IMR_MR_Element
+   type IMR_MR_Field_Array is array (0 .. 22) of Boolean
      with Component_Size => 1, Size => 23;
 
    --  Type definition for IMR_MR
@@ -35,7 +25,7 @@ package STM32F40x.EXTI is
       case As_Array is
          when False =>
             --  MR as a value
-            Val : STM32F40x.UInt23;
+            Val : HAL.UInt23;
          when True =>
             --  MR as an array
             Arr : IMR_MR_Field_Array;
@@ -53,7 +43,7 @@ package STM32F40x.EXTI is
       --  Interrupt Mask on line 0
       MR             : IMR_MR_Field := (As_Array => False, Val => 16#0#);
       --  unspecified
-      Reserved_23_31 : STM32F40x.UInt9 := 16#0#;
+      Reserved_23_31 : HAL.UInt9 := 16#0#;
    end record
      with Volatile_Full_Access, Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -63,19 +53,8 @@ package STM32F40x.EXTI is
       Reserved_23_31 at 0 range 23 .. 31;
    end record;
 
-   ------------------
-   -- EMR_Register --
-   ------------------
-
-   ------------
-   -- EMR.MR --
-   ------------
-
-   --  EMR_MR array element
-   subtype EMR_MR_Element is STM32F40x.Bit;
-
    --  EMR_MR array
-   type EMR_MR_Field_Array is array (0 .. 22) of EMR_MR_Element
+   type EMR_MR_Field_Array is array (0 .. 22) of Boolean
      with Component_Size => 1, Size => 23;
 
    --  Type definition for EMR_MR
@@ -85,7 +64,7 @@ package STM32F40x.EXTI is
       case As_Array is
          when False =>
             --  MR as a value
-            Val : STM32F40x.UInt23;
+            Val : HAL.UInt23;
          when True =>
             --  MR as an array
             Arr : EMR_MR_Field_Array;
@@ -103,7 +82,7 @@ package STM32F40x.EXTI is
       --  Event Mask on line 0
       MR             : EMR_MR_Field := (As_Array => False, Val => 16#0#);
       --  unspecified
-      Reserved_23_31 : STM32F40x.UInt9 := 16#0#;
+      Reserved_23_31 : HAL.UInt9 := 16#0#;
    end record
      with Volatile_Full_Access, Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -113,19 +92,8 @@ package STM32F40x.EXTI is
       Reserved_23_31 at 0 range 23 .. 31;
    end record;
 
-   -------------------
-   -- RTSR_Register --
-   -------------------
-
-   -------------
-   -- RTSR.TR --
-   -------------
-
-   --  RTSR_TR array element
-   subtype RTSR_TR_Element is STM32F40x.Bit;
-
    --  RTSR_TR array
-   type RTSR_TR_Field_Array is array (0 .. 22) of RTSR_TR_Element
+   type RTSR_TR_Field_Array is array (0 .. 22) of Boolean
      with Component_Size => 1, Size => 23;
 
    --  Type definition for RTSR_TR
@@ -135,7 +103,7 @@ package STM32F40x.EXTI is
       case As_Array is
          when False =>
             --  TR as a value
-            Val : STM32F40x.UInt23;
+            Val : HAL.UInt23;
          when True =>
             --  TR as an array
             Arr : RTSR_TR_Field_Array;
@@ -153,7 +121,7 @@ package STM32F40x.EXTI is
       --  Rising trigger event configuration of line 0
       TR             : RTSR_TR_Field := (As_Array => False, Val => 16#0#);
       --  unspecified
-      Reserved_23_31 : STM32F40x.UInt9 := 16#0#;
+      Reserved_23_31 : HAL.UInt9 := 16#0#;
    end record
      with Volatile_Full_Access, Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -163,19 +131,8 @@ package STM32F40x.EXTI is
       Reserved_23_31 at 0 range 23 .. 31;
    end record;
 
-   -------------------
-   -- FTSR_Register --
-   -------------------
-
-   -------------
-   -- FTSR.TR --
-   -------------
-
-   --  FTSR_TR array element
-   subtype FTSR_TR_Element is STM32F40x.Bit;
-
    --  FTSR_TR array
-   type FTSR_TR_Field_Array is array (0 .. 22) of FTSR_TR_Element
+   type FTSR_TR_Field_Array is array (0 .. 22) of Boolean
      with Component_Size => 1, Size => 23;
 
    --  Type definition for FTSR_TR
@@ -185,7 +142,7 @@ package STM32F40x.EXTI is
       case As_Array is
          when False =>
             --  TR as a value
-            Val : STM32F40x.UInt23;
+            Val : HAL.UInt23;
          when True =>
             --  TR as an array
             Arr : FTSR_TR_Field_Array;
@@ -203,7 +160,7 @@ package STM32F40x.EXTI is
       --  Falling trigger event configuration of line 0
       TR             : FTSR_TR_Field := (As_Array => False, Val => 16#0#);
       --  unspecified
-      Reserved_23_31 : STM32F40x.UInt9 := 16#0#;
+      Reserved_23_31 : HAL.UInt9 := 16#0#;
    end record
      with Volatile_Full_Access, Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -213,19 +170,8 @@ package STM32F40x.EXTI is
       Reserved_23_31 at 0 range 23 .. 31;
    end record;
 
-   --------------------
-   -- SWIER_Register --
-   --------------------
-
-   -----------------
-   -- SWIER.SWIER --
-   -----------------
-
-   --  SWIER array element
-   subtype SWIER_Element is STM32F40x.Bit;
-
    --  SWIER array
-   type SWIER_Field_Array is array (0 .. 22) of SWIER_Element
+   type SWIER_Field_Array is array (0 .. 22) of Boolean
      with Component_Size => 1, Size => 23;
 
    --  Type definition for SWIER
@@ -235,7 +181,7 @@ package STM32F40x.EXTI is
       case As_Array is
          when False =>
             --  SWIER as a value
-            Val : STM32F40x.UInt23;
+            Val : HAL.UInt23;
          when True =>
             --  SWIER as an array
             Arr : SWIER_Field_Array;
@@ -253,7 +199,7 @@ package STM32F40x.EXTI is
       --  Software Interrupt on line 0
       SWIER          : SWIER_Field := (As_Array => False, Val => 16#0#);
       --  unspecified
-      Reserved_23_31 : STM32F40x.UInt9 := 16#0#;
+      Reserved_23_31 : HAL.UInt9 := 16#0#;
    end record
      with Volatile_Full_Access, Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -263,19 +209,8 @@ package STM32F40x.EXTI is
       Reserved_23_31 at 0 range 23 .. 31;
    end record;
 
-   -----------------
-   -- PR_Register --
-   -----------------
-
-   -----------
-   -- PR.PR --
-   -----------
-
-   --  PR array element
-   subtype PR_Element is STM32F40x.Bit;
-
    --  PR array
-   type PR_Field_Array is array (0 .. 22) of PR_Element
+   type PR_Field_Array is array (0 .. 22) of Boolean
      with Component_Size => 1, Size => 23;
 
    --  Type definition for PR
@@ -285,7 +220,7 @@ package STM32F40x.EXTI is
       case As_Array is
          when False =>
             --  PR as a value
-            Val : STM32F40x.UInt23;
+            Val : HAL.UInt23;
          when True =>
             --  PR as an array
             Arr : PR_Field_Array;
@@ -303,7 +238,7 @@ package STM32F40x.EXTI is
       --  Pending bit 0
       PR             : PR_Field := (As_Array => False, Val => 16#0#);
       --  unspecified
-      Reserved_23_31 : STM32F40x.UInt9 := 16#0#;
+      Reserved_23_31 : HAL.UInt9 := 16#0#;
    end record
      with Volatile_Full_Access, Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -320,31 +255,31 @@ package STM32F40x.EXTI is
    --  External interrupt/event controller
    type EXTI_Peripheral is record
       --  Interrupt mask register (EXTI_IMR)
-      IMR   : IMR_Register;
+      IMR   : aliased IMR_Register;
       --  Event mask register (EXTI_EMR)
-      EMR   : EMR_Register;
+      EMR   : aliased EMR_Register;
       --  Rising Trigger selection register (EXTI_RTSR)
-      RTSR  : RTSR_Register;
+      RTSR  : aliased RTSR_Register;
       --  Falling Trigger selection register (EXTI_FTSR)
-      FTSR  : FTSR_Register;
+      FTSR  : aliased FTSR_Register;
       --  Software interrupt event register (EXTI_SWIER)
-      SWIER : SWIER_Register;
+      SWIER : aliased SWIER_Register;
       --  Pending register (EXTI_PR)
-      PR    : PR_Register;
+      PR    : aliased PR_Register;
    end record
      with Volatile;
 
    for EXTI_Peripheral use record
-      IMR   at 0 range 0 .. 31;
-      EMR   at 4 range 0 .. 31;
-      RTSR  at 8 range 0 .. 31;
-      FTSR  at 12 range 0 .. 31;
-      SWIER at 16 range 0 .. 31;
-      PR    at 20 range 0 .. 31;
+      IMR   at 16#0# range 0 .. 31;
+      EMR   at 16#4# range 0 .. 31;
+      RTSR  at 16#8# range 0 .. 31;
+      FTSR  at 16#C# range 0 .. 31;
+      SWIER at 16#10# range 0 .. 31;
+      PR    at 16#14# range 0 .. 31;
    end record;
 
    --  External interrupt/event controller
    EXTI_Periph : aliased EXTI_Peripheral
-     with Import, Address => EXTI_Base;
+     with Import, Address => System'To_Address (16#40013C00#);
 
-end STM32F40x.EXTI;
+end STM32_SVD.EXTI;

@@ -1,35 +1,29 @@
 --  This spec has been automatically generated from STM32F40x.svd
---  see https://github.com/simonjwright/svd2ada
 
 pragma Restrictions (No_Elaboration_Code);
 pragma Ada_2012;
+pragma Style_Checks (Off);
 
+with HAL;
 with System;
 
-package STM32F40x.RNG is
+package STM32_SVD.RNG is
    pragma Preelaborate;
 
    ---------------
    -- Registers --
    ---------------
 
-   -----------------
-   -- CR_Register --
-   -----------------
-
-   subtype CR_RNGEN_Field is STM32F40x.Bit;
-   subtype CR_IE_Field is STM32F40x.Bit;
-
    --  control register
    type CR_Register is record
       --  unspecified
-      Reserved_0_1  : STM32F40x.UInt2 := 16#0#;
+      Reserved_0_1  : HAL.UInt2 := 16#0#;
       --  Random number generator enable
-      RNGEN         : CR_RNGEN_Field := 16#0#;
+      RNGEN         : Boolean := False;
       --  Interrupt enable
-      IE            : CR_IE_Field := 16#0#;
+      IE            : Boolean := False;
       --  unspecified
-      Reserved_4_31 : STM32F40x.UInt28 := 16#0#;
+      Reserved_4_31 : HAL.UInt28 := 16#0#;
    end record
      with Volatile_Full_Access, Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -41,32 +35,22 @@ package STM32F40x.RNG is
       Reserved_4_31 at 0 range 4 .. 31;
    end record;
 
-   -----------------
-   -- SR_Register --
-   -----------------
-
-   subtype SR_DRDY_Field is STM32F40x.Bit;
-   subtype SR_CECS_Field is STM32F40x.Bit;
-   subtype SR_SECS_Field is STM32F40x.Bit;
-   subtype SR_CEIS_Field is STM32F40x.Bit;
-   subtype SR_SEIS_Field is STM32F40x.Bit;
-
    --  status register
    type SR_Register is record
       --  Read-only. Data ready
-      DRDY          : SR_DRDY_Field := 16#0#;
+      DRDY          : Boolean := False;
       --  Read-only. Clock error current status
-      CECS          : SR_CECS_Field := 16#0#;
+      CECS          : Boolean := False;
       --  Read-only. Seed error current status
-      SECS          : SR_SECS_Field := 16#0#;
+      SECS          : Boolean := False;
       --  unspecified
-      Reserved_3_4  : STM32F40x.UInt2 := 16#0#;
+      Reserved_3_4  : HAL.UInt2 := 16#0#;
       --  Clock error interrupt status
-      CEIS          : SR_CEIS_Field := 16#0#;
+      CEIS          : Boolean := False;
       --  Seed error interrupt status
-      SEIS          : SR_SEIS_Field := 16#0#;
+      SEIS          : Boolean := False;
       --  unspecified
-      Reserved_7_31 : STM32F40x.UInt25 := 16#0#;
+      Reserved_7_31 : HAL.UInt25 := 16#0#;
    end record
      with Volatile_Full_Access, Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -88,22 +72,22 @@ package STM32F40x.RNG is
    --  Random number generator
    type RNG_Peripheral is record
       --  control register
-      CR : CR_Register;
+      CR : aliased CR_Register;
       --  status register
-      SR : SR_Register;
+      SR : aliased SR_Register;
       --  data register
-      DR : STM32F40x.Word;
+      DR : aliased HAL.UInt32;
    end record
      with Volatile;
 
    for RNG_Peripheral use record
-      CR at 0 range 0 .. 31;
-      SR at 4 range 0 .. 31;
-      DR at 8 range 0 .. 31;
+      CR at 16#0# range 0 .. 31;
+      SR at 16#4# range 0 .. 31;
+      DR at 16#8# range 0 .. 31;
    end record;
 
    --  Random number generator
    RNG_Periph : aliased RNG_Peripheral
-     with Import, Address => RNG_Base;
+     with Import, Address => System'To_Address (16#50060800#);
 
-end STM32F40x.RNG;
+end STM32_SVD.RNG;

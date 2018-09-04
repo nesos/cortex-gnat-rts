@@ -18,21 +18,20 @@
 --  program; see the files COPYING3 and COPYING.RUNTIME respectively.
 --  If not, see <http://www.gnu.org/licenses/>.
 
-with STM32F40x.FLASH; use STM32F40x.FLASH;
-with STM32F40x.PWR;   use STM32F40x.PWR;
-with STM32F40x.RCC;   use STM32F40x.RCC;
+with STM32_SVD.FLASH; use STM32_SVD.FLASH;
+with STM32_SVD.PWR;   use STM32_SVD.PWR;
+with STM32_SVD.RCC;   use STM32_SVD.RCC;
+with HAL; use HAL;
 
 separate (Startup)
 procedure Set_Up_Clock is
-   use type STM32F40x.Bit;
 begin
-
    --  Enable PWR clock
    declare
       APB1ENR : APB1ENR_Register;
    begin
       APB1ENR := RCC_Periph.APB1ENR;
-      APB1ENR.PWREN := 1;
+      APB1ENR.PWREN := True;
       RCC_Periph.APB1ENR := APB1ENR;
    end;
 
@@ -40,50 +39,50 @@ begin
    --  DocID022152 Rev 6 Table 14.
    --  Postpone wait-until-ready until PLL is in use.
    declare
-      CR  : STM32F40x.PWR.CR_Register;
+      CR  : STM32_SVD.PWR.CR_Register;
    begin
       CR := PWR_Periph.CR;
-      CR.VOS := 1;
+      CR.VOS := True;
       PWR_Periph.CR := CR;
    end;
 
    --  Setup internal high-speed clock and wait for stabilisation.
    declare
-      CR : STM32F40x.RCC.CR_Register;
+      CR : STM32_SVD.RCC.CR_Register;
    begin
       CR := RCC_Periph.CR;
-      CR.HSION := 1;
+      CR.HSION := True;
       RCC_Periph.CR := CR;
       loop
          CR := RCC_Periph.CR;
-         exit when CR.HSIRDY = 1;
+         exit when CR.HSIRDY = True;
       end loop;
    end;
 
    --  Setup external high-speed clock and wait for stabilisation.
    declare
-      CR : STM32F40x.RCC.CR_Register;
+      CR : STM32_SVD.RCC.CR_Register;
    begin
       CR := RCC_Periph.CR;
-      CR.HSEON := 1;
+      CR.HSEON := True;
       --  Don't set HSEBYP (i.e. don't bypass external oscillator)
       RCC_Periph.CR := CR;
       loop
          CR := RCC_Periph.CR;
-         exit when CR.HSERDY = 1;
+         exit when CR.HSERDY = True;
       end loop;
    end;
 
    --  Setup internal low-speed clock and wait for stabilisation.
    declare
-      CSR : STM32F40x.RCC.CSR_Register;
+      CSR : STM32_SVD.RCC.CSR_Register;
    begin
       CSR := RCC_Periph.CSR;
-      CSR.LSION := 1;
+      CSR.LSION := True;
       RCC_Periph.CSR := CSR;
       loop
          CSR := RCC_Periph.CSR;
-         exit when CSR.LSIRDY = 1;
+         exit when CSR.LSIRDY = True;
       end loop;
    end;
 
@@ -91,43 +90,42 @@ begin
    --  See RM0090 5.1.4 for how to enter overdrive mode and enable
    --  SYSCLK of 180 MHz.
    declare
-      CR : STM32F40x.RCC.CR_Register;
+      CR : STM32_SVD.RCC.CR_Register;
    begin
       RCC_Periph.PLLCFGR := (PLLM   => 8,
                              PLLN   => 336, -- no overdrive: 168 MHz
                              PLLP   => 0,   -- *2
-                             PLLSRC => 1,   -- HSE
+                             PLLSRC => True,   -- HSE
                              PLLQ   => 7,
                              others => <>);
       CR := RCC_Periph.CR;
-      CR.PLLON := 1;
+      CR.PLLON := True;
       RCC_Periph.CR := CR;
       loop
          CR := RCC_Periph.CR;
-         exit when CR.PLLRDY = 1;
+         exit when CR.PLLRDY = True;
       end loop;
    end;
 
    --  Wait until voltage supply scaling is ready (must be after PLL
    --  is ready).
    declare
-      CSR : STM32F40x.PWR.CSR_Register;
+      CSR : STM32_SVD.PWR.CSR_Register;
    begin
       loop
          CSR := PWR_Periph.CSR;
-         exit when CSR.VOSRDY = 1;
+         exit when CSR.VOSRDY = True;
       end loop;
    end;
 
    --  Set flash latency to 5 wait states _before_ increasing the clock.
    declare
-      ACR : STM32F40x.FLASH.ACR_Register;
-      use type STM32F40x.UInt3;
+      ACR : STM32_SVD.FLASH.ACR_Register;
    begin
       FLASH_Periph.ACR := (LATENCY => 5,
-                           PRFTEN  => 1,
-                           ICEN    => 1,
-                           DCEN    => 1,
+                           PRFTEN  => True,
+                           ICEN    => True,
+                           DCEN    => True,
                            others  => <>);
       --  Not sure we need to check this.
       loop
@@ -149,8 +147,7 @@ begin
       MCO2PRE => 7,            -- MCU clock output 2 prescale = 5
       others  => <>);
    declare
-      CFGR : STM32F40x.RCC.CFGR_Register;
-      use type STM32F40x.UInt2;
+      CFGR : STM32_SVD.RCC.CFGR_Register;
    begin
       loop
          CFGR := RCC_Periph.CFGR;

@@ -1,33 +1,29 @@
 --  This spec has been automatically generated from STM32F40x.svd
---  see https://github.com/simonjwright/svd2ada
 
 pragma Restrictions (No_Elaboration_Code);
 pragma Ada_2012;
+pragma Style_Checks (Off);
 
+with HAL;
 with System;
 
-package STM32F40x.WWDG is
+package STM32_SVD.WWDG is
    pragma Preelaborate;
 
    ---------------
    -- Registers --
    ---------------
 
-   -----------------
-   -- CR_Register --
-   -----------------
-
-   subtype CR_T_Field is STM32F40x.UInt7;
-   subtype CR_WDGA_Field is STM32F40x.Bit;
+   subtype CR_T_Field is HAL.UInt7;
 
    --  Control register
    type CR_Register is record
       --  7-bit counter (MSB to LSB)
       T             : CR_T_Field := 16#7F#;
       --  Activation bit
-      WDGA          : CR_WDGA_Field := 16#0#;
+      WDGA          : Boolean := False;
       --  unspecified
-      Reserved_8_31 : STM32F40x.UInt24 := 16#0#;
+      Reserved_8_31 : HAL.UInt24 := 16#0#;
    end record
      with Volatile_Full_Access, Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -38,21 +34,10 @@ package STM32F40x.WWDG is
       Reserved_8_31 at 0 range 8 .. 31;
    end record;
 
-   ------------------
-   -- CFR_Register --
-   ------------------
-
-   subtype CFR_W_Field is STM32F40x.UInt7;
-
-   ---------------
-   -- CFR.WDGTB --
-   ---------------
-
-   --  CFR_WDGTB array element
-   subtype CFR_WDGTB_Element is STM32F40x.Bit;
+   subtype CFR_W_Field is HAL.UInt7;
 
    --  CFR_WDGTB array
-   type CFR_WDGTB_Field_Array is array (0 .. 1) of CFR_WDGTB_Element
+   type CFR_WDGTB_Field_Array is array (0 .. 1) of Boolean
      with Component_Size => 1, Size => 2;
 
    --  Type definition for CFR_WDGTB
@@ -62,7 +47,7 @@ package STM32F40x.WWDG is
       case As_Array is
          when False =>
             --  WDGTB as a value
-            Val : STM32F40x.UInt2;
+            Val : HAL.UInt2;
          when True =>
             --  WDGTB as an array
             Arr : CFR_WDGTB_Field_Array;
@@ -75,8 +60,6 @@ package STM32F40x.WWDG is
       Arr at 0 range 0 .. 1;
    end record;
 
-   subtype CFR_EWI_Field is STM32F40x.Bit;
-
    --  Configuration register
    type CFR_Register is record
       --  7-bit window value
@@ -84,9 +67,9 @@ package STM32F40x.WWDG is
       --  Timer base
       WDGTB          : CFR_WDGTB_Field := (As_Array => False, Val => 16#0#);
       --  Early wakeup interrupt
-      EWI            : CFR_EWI_Field := 16#0#;
+      EWI            : Boolean := False;
       --  unspecified
-      Reserved_10_31 : STM32F40x.UInt22 := 16#0#;
+      Reserved_10_31 : HAL.UInt22 := 16#0#;
    end record
      with Volatile_Full_Access, Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -98,18 +81,12 @@ package STM32F40x.WWDG is
       Reserved_10_31 at 0 range 10 .. 31;
    end record;
 
-   -----------------
-   -- SR_Register --
-   -----------------
-
-   subtype SR_EWIF_Field is STM32F40x.Bit;
-
    --  Status register
    type SR_Register is record
       --  Early wakeup interrupt flag
-      EWIF          : SR_EWIF_Field := 16#0#;
+      EWIF          : Boolean := False;
       --  unspecified
-      Reserved_1_31 : STM32F40x.UInt31 := 16#0#;
+      Reserved_1_31 : HAL.UInt31 := 16#0#;
    end record
      with Volatile_Full_Access, Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -126,22 +103,22 @@ package STM32F40x.WWDG is
    --  Window watchdog
    type WWDG_Peripheral is record
       --  Control register
-      CR  : CR_Register;
+      CR  : aliased CR_Register;
       --  Configuration register
-      CFR : CFR_Register;
+      CFR : aliased CFR_Register;
       --  Status register
-      SR  : SR_Register;
+      SR  : aliased SR_Register;
    end record
      with Volatile;
 
    for WWDG_Peripheral use record
-      CR  at 0 range 0 .. 31;
-      CFR at 4 range 0 .. 31;
-      SR  at 8 range 0 .. 31;
+      CR  at 16#0# range 0 .. 31;
+      CFR at 16#4# range 0 .. 31;
+      SR  at 16#8# range 0 .. 31;
    end record;
 
    --  Window watchdog
    WWDG_Periph : aliased WWDG_Peripheral
-     with Import, Address => WWDG_Base;
+     with Import, Address => System'To_Address (16#40002C00#);
 
-end STM32F40x.WWDG;
+end STM32_SVD.WWDG;

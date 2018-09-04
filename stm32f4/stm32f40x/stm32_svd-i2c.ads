@@ -1,73 +1,55 @@
 --  This spec has been automatically generated from STM32F40x.svd
---  see https://github.com/simonjwright/svd2ada
 
 pragma Restrictions (No_Elaboration_Code);
 pragma Ada_2012;
+pragma Style_Checks (Off);
 
+with HAL;
 with System;
 
-package STM32F40x.I2C is
+package STM32_SVD.I2C is
    pragma Preelaborate;
 
    ---------------
    -- Registers --
    ---------------
 
-   ------------------
-   -- CR1_Register --
-   ------------------
-
-   subtype CR1_PE_Field is STM32F40x.Bit;
-   subtype CR1_SMBUS_Field is STM32F40x.Bit;
-   subtype CR1_SMBTYPE_Field is STM32F40x.Bit;
-   subtype CR1_ENARP_Field is STM32F40x.Bit;
-   subtype CR1_ENPEC_Field is STM32F40x.Bit;
-   subtype CR1_ENGC_Field is STM32F40x.Bit;
-   subtype CR1_NOSTRETCH_Field is STM32F40x.Bit;
-   subtype CR1_START_Field is STM32F40x.Bit;
-   subtype CR1_STOP_Field is STM32F40x.Bit;
-   subtype CR1_ACK_Field is STM32F40x.Bit;
-   subtype CR1_POS_Field is STM32F40x.Bit;
-   subtype CR1_PEC_Field is STM32F40x.Bit;
-   subtype CR1_ALERT_Field is STM32F40x.Bit;
-   subtype CR1_SWRST_Field is STM32F40x.Bit;
-
    --  Control register 1
    type CR1_Register is record
       --  Peripheral enable
-      PE             : CR1_PE_Field := 16#0#;
+      PE             : Boolean := False;
       --  SMBus mode
-      SMBUS          : CR1_SMBUS_Field := 16#0#;
+      SMBUS          : Boolean := False;
       --  unspecified
-      Reserved_2_2   : STM32F40x.Bit := 16#0#;
+      Reserved_2_2   : HAL.Bit := 16#0#;
       --  SMBus type
-      SMBTYPE        : CR1_SMBTYPE_Field := 16#0#;
+      SMBTYPE        : Boolean := False;
       --  ARP enable
-      ENARP          : CR1_ENARP_Field := 16#0#;
+      ENARP          : Boolean := False;
       --  PEC enable
-      ENPEC          : CR1_ENPEC_Field := 16#0#;
+      ENPEC          : Boolean := False;
       --  General call enable
-      ENGC           : CR1_ENGC_Field := 16#0#;
+      ENGC           : Boolean := False;
       --  Clock stretching disable (Slave mode)
-      NOSTRETCH      : CR1_NOSTRETCH_Field := 16#0#;
+      NOSTRETCH      : Boolean := False;
       --  Start generation
-      START          : CR1_START_Field := 16#0#;
+      START          : Boolean := False;
       --  Stop generation
-      STOP           : CR1_STOP_Field := 16#0#;
+      STOP           : Boolean := False;
       --  Acknowledge enable
-      ACK            : CR1_ACK_Field := 16#0#;
+      ACK            : Boolean := False;
       --  Acknowledge/PEC Position (for data reception)
-      POS            : CR1_POS_Field := 16#0#;
+      POS            : Boolean := False;
       --  Packet error checking
-      PEC            : CR1_PEC_Field := 16#0#;
+      PEC            : Boolean := False;
       --  SMBus alert
-      ALERT          : CR1_ALERT_Field := 16#0#;
+      ALERT          : Boolean := False;
       --  unspecified
-      Reserved_14_14 : STM32F40x.Bit := 16#0#;
+      Reserved_14_14 : HAL.Bit := 16#0#;
       --  Software reset
-      SWRST          : CR1_SWRST_Field := 16#0#;
+      SWRST          : Boolean := False;
       --  unspecified
-      Reserved_16_31 : STM32F40x.Short := 16#0#;
+      Reserved_16_31 : HAL.UInt16 := 16#0#;
    end record
      with Volatile_Full_Access, Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -92,35 +74,26 @@ package STM32F40x.I2C is
       Reserved_16_31 at 0 range 16 .. 31;
    end record;
 
-   ------------------
-   -- CR2_Register --
-   ------------------
-
-   subtype CR2_FREQ_Field is STM32F40x.UInt6;
-   subtype CR2_ITERREN_Field is STM32F40x.Bit;
-   subtype CR2_ITEVTEN_Field is STM32F40x.Bit;
-   subtype CR2_ITBUFEN_Field is STM32F40x.Bit;
-   subtype CR2_DMAEN_Field is STM32F40x.Bit;
-   subtype CR2_LAST_Field is STM32F40x.Bit;
+   subtype CR2_FREQ_Field is HAL.UInt6;
 
    --  Control register 2
    type CR2_Register is record
       --  Peripheral clock frequency
       FREQ           : CR2_FREQ_Field := 16#0#;
       --  unspecified
-      Reserved_6_7   : STM32F40x.UInt2 := 16#0#;
+      Reserved_6_7   : HAL.UInt2 := 16#0#;
       --  Error interrupt enable
-      ITERREN        : CR2_ITERREN_Field := 16#0#;
+      ITERREN        : Boolean := False;
       --  Event interrupt enable
-      ITEVTEN        : CR2_ITEVTEN_Field := 16#0#;
+      ITEVTEN        : Boolean := False;
       --  Buffer interrupt enable
-      ITBUFEN        : CR2_ITBUFEN_Field := 16#0#;
+      ITBUFEN        : Boolean := False;
       --  DMA requests enable
-      DMAEN          : CR2_DMAEN_Field := 16#0#;
+      DMAEN          : Boolean := False;
       --  DMA last transfer
-      LAST           : CR2_LAST_Field := 16#0#;
+      LAST           : Boolean := False;
       --  unspecified
-      Reserved_13_31 : STM32F40x.UInt19 := 16#0#;
+      Reserved_13_31 : HAL.UInt19 := 16#0#;
    end record
      with Volatile_Full_Access, Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -136,29 +109,23 @@ package STM32F40x.I2C is
       Reserved_13_31 at 0 range 13 .. 31;
    end record;
 
-   -------------------
-   -- OAR1_Register --
-   -------------------
-
-   subtype OAR1_ADD0_Field is STM32F40x.Bit;
-   subtype OAR1_ADD7_Field is STM32F40x.UInt7;
-   subtype OAR1_ADD10_Field is STM32F40x.UInt2;
-   subtype OAR1_ADDMODE_Field is STM32F40x.Bit;
+   subtype OAR1_ADD7_Field is HAL.UInt7;
+   subtype OAR1_ADD10_Field is HAL.UInt2;
 
    --  Own address register 1
    type OAR1_Register is record
       --  Interface address
-      ADD0           : OAR1_ADD0_Field := 16#0#;
+      ADD0           : Boolean := False;
       --  Interface address
       ADD7           : OAR1_ADD7_Field := 16#0#;
       --  Interface address
       ADD10          : OAR1_ADD10_Field := 16#0#;
       --  unspecified
-      Reserved_10_14 : STM32F40x.UInt5 := 16#0#;
+      Reserved_10_14 : HAL.UInt5 := 16#0#;
       --  Addressing mode (slave mode)
-      ADDMODE        : OAR1_ADDMODE_Field := 16#0#;
+      ADDMODE        : Boolean := False;
       --  unspecified
-      Reserved_16_31 : STM32F40x.Short := 16#0#;
+      Reserved_16_31 : HAL.UInt16 := 16#0#;
    end record
      with Volatile_Full_Access, Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -172,21 +139,16 @@ package STM32F40x.I2C is
       Reserved_16_31 at 0 range 16 .. 31;
    end record;
 
-   -------------------
-   -- OAR2_Register --
-   -------------------
-
-   subtype OAR2_ENDUAL_Field is STM32F40x.Bit;
-   subtype OAR2_ADD2_Field is STM32F40x.UInt7;
+   subtype OAR2_ADD2_Field is HAL.UInt7;
 
    --  Own address register 2
    type OAR2_Register is record
       --  Dual addressing mode enable
-      ENDUAL        : OAR2_ENDUAL_Field := 16#0#;
+      ENDUAL        : Boolean := False;
       --  Interface address
       ADD2          : OAR2_ADD2_Field := 16#0#;
       --  unspecified
-      Reserved_8_31 : STM32F40x.UInt24 := 16#0#;
+      Reserved_8_31 : HAL.UInt24 := 16#0#;
    end record
      with Volatile_Full_Access, Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -197,18 +159,14 @@ package STM32F40x.I2C is
       Reserved_8_31 at 0 range 8 .. 31;
    end record;
 
-   -----------------
-   -- DR_Register --
-   -----------------
-
-   subtype DR_DR_Field is STM32F40x.Byte;
+   subtype DR_DR_Field is HAL.UInt8;
 
    --  Data register
    type DR_Register is record
       --  8-bit data register
       DR            : DR_DR_Field := 16#0#;
       --  unspecified
-      Reserved_8_31 : STM32F40x.UInt24 := 16#0#;
+      Reserved_8_31 : HAL.UInt24 := 16#0#;
    end record
      with Volatile_Full_Access, Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -218,61 +176,42 @@ package STM32F40x.I2C is
       Reserved_8_31 at 0 range 8 .. 31;
    end record;
 
-   ------------------
-   -- SR1_Register --
-   ------------------
-
-   subtype SR1_SB_Field is STM32F40x.Bit;
-   subtype SR1_ADDR_Field is STM32F40x.Bit;
-   subtype SR1_BTF_Field is STM32F40x.Bit;
-   subtype SR1_ADD10_Field is STM32F40x.Bit;
-   subtype SR1_STOPF_Field is STM32F40x.Bit;
-   subtype SR1_RxNE_Field is STM32F40x.Bit;
-   subtype SR1_TxE_Field is STM32F40x.Bit;
-   subtype SR1_BERR_Field is STM32F40x.Bit;
-   subtype SR1_ARLO_Field is STM32F40x.Bit;
-   subtype SR1_AF_Field is STM32F40x.Bit;
-   subtype SR1_OVR_Field is STM32F40x.Bit;
-   subtype SR1_PECERR_Field is STM32F40x.Bit;
-   subtype SR1_TIMEOUT_Field is STM32F40x.Bit;
-   subtype SR1_SMBALERT_Field is STM32F40x.Bit;
-
    --  Status register 1
    type SR1_Register is record
       --  Read-only. Start bit (Master mode)
-      SB             : SR1_SB_Field := 16#0#;
+      SB             : Boolean := False;
       --  Read-only. Address sent (master mode)/matched (slave mode)
-      ADDR           : SR1_ADDR_Field := 16#0#;
+      ADDR           : Boolean := False;
       --  Read-only. Byte transfer finished
-      BTF            : SR1_BTF_Field := 16#0#;
+      BTF            : Boolean := False;
       --  Read-only. 10-bit header sent (Master mode)
-      ADD10          : SR1_ADD10_Field := 16#0#;
+      ADD10          : Boolean := False;
       --  Read-only. Stop detection (slave mode)
-      STOPF          : SR1_STOPF_Field := 16#0#;
+      STOPF          : Boolean := False;
       --  unspecified
-      Reserved_5_5   : STM32F40x.Bit := 16#0#;
+      Reserved_5_5   : HAL.Bit := 16#0#;
       --  Read-only. Data register not empty (receivers)
-      RxNE           : SR1_RxNE_Field := 16#0#;
+      RxNE           : Boolean := False;
       --  Read-only. Data register empty (transmitters)
-      TxE            : SR1_TxE_Field := 16#0#;
+      TxE            : Boolean := False;
       --  Bus error
-      BERR           : SR1_BERR_Field := 16#0#;
+      BERR           : Boolean := False;
       --  Arbitration lost (master mode)
-      ARLO           : SR1_ARLO_Field := 16#0#;
+      ARLO           : Boolean := False;
       --  Acknowledge failure
-      AF             : SR1_AF_Field := 16#0#;
+      AF             : Boolean := False;
       --  Overrun/Underrun
-      OVR            : SR1_OVR_Field := 16#0#;
+      OVR            : Boolean := False;
       --  PEC Error in reception
-      PECERR         : SR1_PECERR_Field := 16#0#;
+      PECERR         : Boolean := False;
       --  unspecified
-      Reserved_13_13 : STM32F40x.Bit := 16#0#;
+      Reserved_13_13 : HAL.Bit := 16#0#;
       --  Timeout or Tlow error
-      TIMEOUT        : SR1_TIMEOUT_Field := 16#0#;
+      TIMEOUT        : Boolean := False;
       --  SMBus alert
-      SMBALERT       : SR1_SMBALERT_Field := 16#0#;
+      SMBALERT       : Boolean := False;
       --  unspecified
-      Reserved_16_31 : STM32F40x.Short := 16#0#;
+      Reserved_16_31 : HAL.UInt16 := 16#0#;
    end record
      with Volatile_Full_Access, Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -297,41 +236,30 @@ package STM32F40x.I2C is
       Reserved_16_31 at 0 range 16 .. 31;
    end record;
 
-   ------------------
-   -- SR2_Register --
-   ------------------
-
-   subtype SR2_MSL_Field is STM32F40x.Bit;
-   subtype SR2_BUSY_Field is STM32F40x.Bit;
-   subtype SR2_TRA_Field is STM32F40x.Bit;
-   subtype SR2_GENCALL_Field is STM32F40x.Bit;
-   subtype SR2_SMBDEFAULT_Field is STM32F40x.Bit;
-   subtype SR2_SMBHOST_Field is STM32F40x.Bit;
-   subtype SR2_DUALF_Field is STM32F40x.Bit;
-   subtype SR2_PEC_Field is STM32F40x.Byte;
+   subtype SR2_PEC_Field is HAL.UInt8;
 
    --  Status register 2
    type SR2_Register is record
       --  Read-only. Master/slave
-      MSL            : SR2_MSL_Field := 16#0#;
+      MSL            : Boolean;
       --  Read-only. Bus busy
-      BUSY           : SR2_BUSY_Field := 16#0#;
+      BUSY           : Boolean;
       --  Read-only. Transmitter/receiver
-      TRA            : SR2_TRA_Field := 16#0#;
+      TRA            : Boolean;
       --  unspecified
-      Reserved_3_3   : STM32F40x.Bit;
+      Reserved_3_3   : HAL.Bit;
       --  Read-only. General call address (Slave mode)
-      GENCALL        : SR2_GENCALL_Field := 16#0#;
+      GENCALL        : Boolean;
       --  Read-only. SMBus device default address (Slave mode)
-      SMBDEFAULT     : SR2_SMBDEFAULT_Field := 16#0#;
+      SMBDEFAULT     : Boolean;
       --  Read-only. SMBus host header (Slave mode)
-      SMBHOST        : SR2_SMBHOST_Field := 16#0#;
+      SMBHOST        : Boolean;
       --  Read-only. Dual flag (Slave mode)
-      DUALF          : SR2_DUALF_Field := 16#0#;
+      DUALF          : Boolean;
       --  Read-only. acket error checking register
-      PEC            : SR2_PEC_Field := 16#0#;
+      PEC            : SR2_PEC_Field;
       --  unspecified
-      Reserved_16_31 : STM32F40x.Short;
+      Reserved_16_31 : HAL.UInt16;
    end record
      with Volatile_Full_Access, Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -349,26 +277,20 @@ package STM32F40x.I2C is
       Reserved_16_31 at 0 range 16 .. 31;
    end record;
 
-   ------------------
-   -- CCR_Register --
-   ------------------
-
-   subtype CCR_CCR_Field is STM32F40x.UInt12;
-   subtype CCR_DUTY_Field is STM32F40x.Bit;
-   subtype CCR_F_S_Field is STM32F40x.Bit;
+   subtype CCR_CCR_Field is HAL.UInt12;
 
    --  Clock control register
    type CCR_Register is record
       --  Clock control register in Fast/Standard mode (Master mode)
       CCR            : CCR_CCR_Field := 16#0#;
       --  unspecified
-      Reserved_12_13 : STM32F40x.UInt2 := 16#0#;
+      Reserved_12_13 : HAL.UInt2 := 16#0#;
       --  Fast mode duty cycle
-      DUTY           : CCR_DUTY_Field := 16#0#;
+      DUTY           : Boolean := False;
       --  I2C master mode selection
-      F_S            : CCR_F_S_Field := 16#0#;
+      F_S            : Boolean := False;
       --  unspecified
-      Reserved_16_31 : STM32F40x.Short := 16#0#;
+      Reserved_16_31 : HAL.UInt16 := 16#0#;
    end record
      with Volatile_Full_Access, Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -381,18 +303,14 @@ package STM32F40x.I2C is
       Reserved_16_31 at 0 range 16 .. 31;
    end record;
 
-   --------------------
-   -- TRISE_Register --
-   --------------------
-
-   subtype TRISE_TRISE_Field is STM32F40x.UInt6;
+   subtype TRISE_TRISE_Field is HAL.UInt6;
 
    --  TRISE register
    type TRISE_Register is record
       --  Maximum rise time in Fast/Standard mode (Master mode)
       TRISE         : TRISE_TRISE_Field := 16#2#;
       --  unspecified
-      Reserved_6_31 : STM32F40x.UInt26 := 16#0#;
+      Reserved_6_31 : HAL.UInt26 := 16#0#;
    end record
      with Volatile_Full_Access, Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -409,48 +327,48 @@ package STM32F40x.I2C is
    --  Inter-integrated circuit
    type I2C_Peripheral is record
       --  Control register 1
-      CR1   : CR1_Register;
+      CR1   : aliased CR1_Register;
       --  Control register 2
-      CR2   : CR2_Register;
+      CR2   : aliased CR2_Register;
       --  Own address register 1
-      OAR1  : OAR1_Register;
+      OAR1  : aliased OAR1_Register;
       --  Own address register 2
-      OAR2  : OAR2_Register;
+      OAR2  : aliased OAR2_Register;
       --  Data register
-      DR    : DR_Register;
+      DR    : aliased DR_Register;
       --  Status register 1
-      SR1   : SR1_Register;
+      SR1   : aliased SR1_Register;
       --  Status register 2
-      SR2   : SR2_Register;
+      SR2   : aliased SR2_Register;
       --  Clock control register
-      CCR   : CCR_Register;
+      CCR   : aliased CCR_Register;
       --  TRISE register
-      TRISE : TRISE_Register;
+      TRISE : aliased TRISE_Register;
    end record
      with Volatile;
 
    for I2C_Peripheral use record
-      CR1   at 0 range 0 .. 31;
-      CR2   at 4 range 0 .. 31;
-      OAR1  at 8 range 0 .. 31;
-      OAR2  at 12 range 0 .. 31;
-      DR    at 16 range 0 .. 31;
-      SR1   at 20 range 0 .. 31;
-      SR2   at 24 range 0 .. 31;
-      CCR   at 28 range 0 .. 31;
-      TRISE at 32 range 0 .. 31;
+      CR1   at 16#0# range 0 .. 31;
+      CR2   at 16#4# range 0 .. 31;
+      OAR1  at 16#8# range 0 .. 31;
+      OAR2  at 16#C# range 0 .. 31;
+      DR    at 16#10# range 0 .. 31;
+      SR1   at 16#14# range 0 .. 31;
+      SR2   at 16#18# range 0 .. 31;
+      CCR   at 16#1C# range 0 .. 31;
+      TRISE at 16#20# range 0 .. 31;
    end record;
 
    --  Inter-integrated circuit
    I2C1_Periph : aliased I2C_Peripheral
-     with Import, Address => I2C1_Base;
+     with Import, Address => System'To_Address (16#40005400#);
 
    --  Inter-integrated circuit
    I2C2_Periph : aliased I2C_Peripheral
-     with Import, Address => I2C2_Base;
+     with Import, Address => System'To_Address (16#40005800#);
 
    --  Inter-integrated circuit
    I2C3_Periph : aliased I2C_Peripheral
-     with Import, Address => I2C3_Base;
+     with Import, Address => System'To_Address (16#40005C00#);
 
-end STM32F40x.I2C;
+end STM32_SVD.I2C;

@@ -1,56 +1,45 @@
 --  This spec has been automatically generated from STM32F40x.svd
---  see https://github.com/simonjwright/svd2ada
 
 pragma Restrictions (No_Elaboration_Code);
 pragma Ada_2012;
+pragma Style_Checks (Off);
 
+with HAL;
 with System;
 
-package STM32F40x.PWR is
+package STM32_SVD.PWR is
    pragma Preelaborate;
 
    ---------------
    -- Registers --
    ---------------
 
-   -----------------
-   -- CR_Register --
-   -----------------
-
-   subtype CR_LPDS_Field is STM32F40x.Bit;
-   subtype CR_PDDS_Field is STM32F40x.Bit;
-   subtype CR_CWUF_Field is STM32F40x.Bit;
-   subtype CR_CSBF_Field is STM32F40x.Bit;
-   subtype CR_PVDE_Field is STM32F40x.Bit;
-   subtype CR_PLS_Field is STM32F40x.UInt3;
-   subtype CR_DBP_Field is STM32F40x.Bit;
-   subtype CR_FPDS_Field is STM32F40x.Bit;
-   subtype CR_VOS_Field is STM32F40x.Bit;
+   subtype CR_PLS_Field is HAL.UInt3;
 
    --  power control register
    type CR_Register is record
       --  Low-power deep sleep
-      LPDS           : CR_LPDS_Field := 16#0#;
+      LPDS           : Boolean := False;
       --  Power down deepsleep
-      PDDS           : CR_PDDS_Field := 16#0#;
+      PDDS           : Boolean := False;
       --  Clear wakeup flag
-      CWUF           : CR_CWUF_Field := 16#0#;
+      CWUF           : Boolean := False;
       --  Clear standby flag
-      CSBF           : CR_CSBF_Field := 16#0#;
+      CSBF           : Boolean := False;
       --  Power voltage detector enable
-      PVDE           : CR_PVDE_Field := 16#0#;
+      PVDE           : Boolean := False;
       --  PVD level selection
       PLS            : CR_PLS_Field := 16#0#;
       --  Disable backup domain write protection
-      DBP            : CR_DBP_Field := 16#0#;
+      DBP            : Boolean := False;
       --  Flash power down in Stop mode
-      FPDS           : CR_FPDS_Field := 16#0#;
+      FPDS           : Boolean := False;
       --  unspecified
-      Reserved_10_13 : STM32F40x.UInt4 := 16#0#;
+      Reserved_10_13 : HAL.UInt4 := 16#0#;
       --  Regulator voltage scaling mode
-      VOS            : CR_VOS_Field := 16#0#;
+      VOS            : Boolean := False;
       --  unspecified
-      Reserved_15_31 : STM32F40x.UInt17 := 16#0#;
+      Reserved_15_31 : HAL.UInt17 := 16#0#;
    end record
      with Volatile_Full_Access, Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -69,40 +58,28 @@ package STM32F40x.PWR is
       Reserved_15_31 at 0 range 15 .. 31;
    end record;
 
-   ------------------
-   -- CSR_Register --
-   ------------------
-
-   subtype CSR_WUF_Field is STM32F40x.Bit;
-   subtype CSR_SBF_Field is STM32F40x.Bit;
-   subtype CSR_PVDO_Field is STM32F40x.Bit;
-   subtype CSR_BRR_Field is STM32F40x.Bit;
-   subtype CSR_EWUP_Field is STM32F40x.Bit;
-   subtype CSR_BRE_Field is STM32F40x.Bit;
-   subtype CSR_VOSRDY_Field is STM32F40x.Bit;
-
    --  power control/status register
    type CSR_Register is record
       --  Read-only. Wakeup flag
-      WUF            : CSR_WUF_Field := 16#0#;
+      WUF            : Boolean := False;
       --  Read-only. Standby flag
-      SBF            : CSR_SBF_Field := 16#0#;
+      SBF            : Boolean := False;
       --  Read-only. PVD output
-      PVDO           : CSR_PVDO_Field := 16#0#;
+      PVDO           : Boolean := False;
       --  Read-only. Backup regulator ready
-      BRR            : CSR_BRR_Field := 16#0#;
+      BRR            : Boolean := False;
       --  unspecified
-      Reserved_4_7   : STM32F40x.UInt4 := 16#0#;
+      Reserved_4_7   : HAL.UInt4 := 16#0#;
       --  Enable WKUP pin
-      EWUP           : CSR_EWUP_Field := 16#0#;
+      EWUP           : Boolean := False;
       --  Backup regulator enable
-      BRE            : CSR_BRE_Field := 16#0#;
+      BRE            : Boolean := False;
       --  unspecified
-      Reserved_10_13 : STM32F40x.UInt4 := 16#0#;
+      Reserved_10_13 : HAL.UInt4 := 16#0#;
       --  Regulator voltage scaling output selection ready bit
-      VOSRDY         : CSR_VOSRDY_Field := 16#0#;
+      VOSRDY         : Boolean := False;
       --  unspecified
-      Reserved_15_31 : STM32F40x.UInt17 := 16#0#;
+      Reserved_15_31 : HAL.UInt17 := 16#0#;
    end record
      with Volatile_Full_Access, Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -127,19 +104,19 @@ package STM32F40x.PWR is
    --  Power control
    type PWR_Peripheral is record
       --  power control register
-      CR  : CR_Register;
+      CR  : aliased CR_Register;
       --  power control/status register
-      CSR : CSR_Register;
+      CSR : aliased CSR_Register;
    end record
      with Volatile;
 
    for PWR_Peripheral use record
-      CR  at 0 range 0 .. 31;
-      CSR at 4 range 0 .. 31;
+      CR  at 16#0# range 0 .. 31;
+      CSR at 16#4# range 0 .. 31;
    end record;
 
    --  Power control
    PWR_Periph : aliased PWR_Peripheral
-     with Import, Address => PWR_Base;
+     with Import, Address => System'To_Address (16#40007000#);
 
-end STM32F40x.PWR;
+end STM32_SVD.PWR;

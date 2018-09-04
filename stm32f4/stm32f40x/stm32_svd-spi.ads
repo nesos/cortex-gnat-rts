@@ -1,69 +1,53 @@
 --  This spec has been automatically generated from STM32F40x.svd
---  see https://github.com/simonjwright/svd2ada
 
 pragma Restrictions (No_Elaboration_Code);
 pragma Ada_2012;
+pragma Style_Checks (Off);
 
+with HAL;
 with System;
 
-package STM32F40x.SPI is
+package STM32_SVD.SPI is
    pragma Preelaborate;
 
    ---------------
    -- Registers --
    ---------------
 
-   ------------------
-   -- CR1_Register --
-   ------------------
-
-   subtype CR1_CPHA_Field is STM32F40x.Bit;
-   subtype CR1_CPOL_Field is STM32F40x.Bit;
-   subtype CR1_MSTR_Field is STM32F40x.Bit;
-   subtype CR1_BR_Field is STM32F40x.UInt3;
-   subtype CR1_SPE_Field is STM32F40x.Bit;
-   subtype CR1_LSBFIRST_Field is STM32F40x.Bit;
-   subtype CR1_SSI_Field is STM32F40x.Bit;
-   subtype CR1_SSM_Field is STM32F40x.Bit;
-   subtype CR1_RXONLY_Field is STM32F40x.Bit;
-   subtype CR1_DFF_Field is STM32F40x.Bit;
-   subtype CR1_CRCNEXT_Field is STM32F40x.Bit;
-   subtype CR1_CRCEN_Field is STM32F40x.Bit;
-   subtype CR1_BIDIOE_Field is STM32F40x.Bit;
-   subtype CR1_BIDIMODE_Field is STM32F40x.Bit;
+   subtype CR1_BR_Field is HAL.UInt3;
 
    --  control register 1
    type CR1_Register is record
       --  Clock phase
-      CPHA           : CR1_CPHA_Field := 16#0#;
+      CPHA           : Boolean := False;
       --  Clock polarity
-      CPOL           : CR1_CPOL_Field := 16#0#;
+      CPOL           : Boolean := False;
       --  Master selection
-      MSTR           : CR1_MSTR_Field := 16#0#;
+      MSTR           : Boolean := False;
       --  Baud rate control
       BR             : CR1_BR_Field := 16#0#;
       --  SPI enable
-      SPE            : CR1_SPE_Field := 16#0#;
+      SPE            : Boolean := False;
       --  Frame format
-      LSBFIRST       : CR1_LSBFIRST_Field := 16#0#;
+      LSBFIRST       : Boolean := False;
       --  Internal slave select
-      SSI            : CR1_SSI_Field := 16#0#;
+      SSI            : Boolean := False;
       --  Software slave management
-      SSM            : CR1_SSM_Field := 16#0#;
+      SSM            : Boolean := False;
       --  Receive only
-      RXONLY         : CR1_RXONLY_Field := 16#0#;
+      RXONLY         : Boolean := False;
       --  Data frame format
-      DFF            : CR1_DFF_Field := 16#0#;
+      DFF            : Boolean := False;
       --  CRC transfer next
-      CRCNEXT        : CR1_CRCNEXT_Field := 16#0#;
+      CRCNEXT        : Boolean := False;
       --  Hardware CRC calculation enable
-      CRCEN          : CR1_CRCEN_Field := 16#0#;
+      CRCEN          : Boolean := False;
       --  Output enable in bidirectional mode
-      BIDIOE         : CR1_BIDIOE_Field := 16#0#;
+      BIDIOE         : Boolean := False;
       --  Bidirectional data mode enable
-      BIDIMODE       : CR1_BIDIMODE_Field := 16#0#;
+      BIDIMODE       : Boolean := False;
       --  unspecified
-      Reserved_16_31 : STM32F40x.Short := 16#0#;
+      Reserved_16_31 : HAL.UInt16 := 16#0#;
    end record
      with Volatile_Full_Access, Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -86,38 +70,26 @@ package STM32F40x.SPI is
       Reserved_16_31 at 0 range 16 .. 31;
    end record;
 
-   ------------------
-   -- CR2_Register --
-   ------------------
-
-   subtype CR2_RXDMAEN_Field is STM32F40x.Bit;
-   subtype CR2_TXDMAEN_Field is STM32F40x.Bit;
-   subtype CR2_SSOE_Field is STM32F40x.Bit;
-   subtype CR2_FRF_Field is STM32F40x.Bit;
-   subtype CR2_ERRIE_Field is STM32F40x.Bit;
-   subtype CR2_RXNEIE_Field is STM32F40x.Bit;
-   subtype CR2_TXEIE_Field is STM32F40x.Bit;
-
    --  control register 2
    type CR2_Register is record
       --  Rx buffer DMA enable
-      RXDMAEN       : CR2_RXDMAEN_Field := 16#0#;
+      RXDMAEN       : Boolean := False;
       --  Tx buffer DMA enable
-      TXDMAEN       : CR2_TXDMAEN_Field := 16#0#;
+      TXDMAEN       : Boolean := False;
       --  SS output enable
-      SSOE          : CR2_SSOE_Field := 16#0#;
+      SSOE          : Boolean := False;
       --  unspecified
-      Reserved_3_3  : STM32F40x.Bit := 16#0#;
+      Reserved_3_3  : HAL.Bit := 16#0#;
       --  Frame format
-      FRF           : CR2_FRF_Field := 16#0#;
+      FRF           : Boolean := False;
       --  Error interrupt enable
-      ERRIE         : CR2_ERRIE_Field := 16#0#;
+      ERRIE         : Boolean := False;
       --  RX buffer not empty interrupt enable
-      RXNEIE        : CR2_RXNEIE_Field := 16#0#;
+      RXNEIE        : Boolean := False;
       --  Tx buffer empty interrupt enable
-      TXEIE         : CR2_TXEIE_Field := 16#0#;
+      TXEIE         : Boolean := False;
       --  unspecified
-      Reserved_8_31 : STM32F40x.UInt24 := 16#0#;
+      Reserved_8_31 : HAL.UInt24 := 16#0#;
    end record
      with Volatile_Full_Access, Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -134,42 +106,28 @@ package STM32F40x.SPI is
       Reserved_8_31 at 0 range 8 .. 31;
    end record;
 
-   -----------------
-   -- SR_Register --
-   -----------------
-
-   subtype SR_RXNE_Field is STM32F40x.Bit;
-   subtype SR_TXE_Field is STM32F40x.Bit;
-   subtype SR_CHSIDE_Field is STM32F40x.Bit;
-   subtype SR_UDR_Field is STM32F40x.Bit;
-   subtype SR_CRCERR_Field is STM32F40x.Bit;
-   subtype SR_MODF_Field is STM32F40x.Bit;
-   subtype SR_OVR_Field is STM32F40x.Bit;
-   subtype SR_BSY_Field is STM32F40x.Bit;
-   subtype SR_TIFRFE_Field is STM32F40x.Bit;
-
    --  status register
    type SR_Register is record
       --  Read-only. Receive buffer not empty
-      RXNE          : SR_RXNE_Field := 16#0#;
+      RXNE          : Boolean := False;
       --  Read-only. Transmit buffer empty
-      TXE           : SR_TXE_Field := 16#1#;
+      TXE           : Boolean := True;
       --  Read-only. Channel side
-      CHSIDE        : SR_CHSIDE_Field := 16#0#;
+      CHSIDE        : Boolean := False;
       --  Read-only. Underrun flag
-      UDR           : SR_UDR_Field := 16#0#;
+      UDR           : Boolean := False;
       --  CRC error flag
-      CRCERR        : SR_CRCERR_Field := 16#0#;
+      CRCERR        : Boolean := False;
       --  Read-only. Mode fault
-      MODF          : SR_MODF_Field := 16#0#;
+      MODF          : Boolean := False;
       --  Read-only. Overrun flag
-      OVR           : SR_OVR_Field := 16#0#;
+      OVR           : Boolean := False;
       --  Read-only. Busy flag
-      BSY           : SR_BSY_Field := 16#0#;
+      BSY           : Boolean := False;
       --  Read-only. TI frame format error
-      TIFRFE        : SR_TIFRFE_Field := 16#0#;
+      TIFRFE        : Boolean := False;
       --  unspecified
-      Reserved_9_31 : STM32F40x.UInt23 := 16#0#;
+      Reserved_9_31 : HAL.UInt23 := 16#0#;
    end record
      with Volatile_Full_Access, Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -187,18 +145,14 @@ package STM32F40x.SPI is
       Reserved_9_31 at 0 range 9 .. 31;
    end record;
 
-   -----------------
-   -- DR_Register --
-   -----------------
-
-   subtype DR_DR_Field is STM32F40x.Short;
+   subtype DR_DR_Field is HAL.UInt16;
 
    --  data register
    type DR_Register is record
       --  Data register
       DR             : DR_DR_Field := 16#0#;
       --  unspecified
-      Reserved_16_31 : STM32F40x.Short := 16#0#;
+      Reserved_16_31 : HAL.UInt16 := 16#0#;
    end record
      with Volatile_Full_Access, Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -208,18 +162,14 @@ package STM32F40x.SPI is
       Reserved_16_31 at 0 range 16 .. 31;
    end record;
 
-   --------------------
-   -- CRCPR_Register --
-   --------------------
-
-   subtype CRCPR_CRCPOLY_Field is STM32F40x.Short;
+   subtype CRCPR_CRCPOLY_Field is HAL.UInt16;
 
    --  CRC polynomial register
    type CRCPR_Register is record
       --  CRC polynomial register
       CRCPOLY        : CRCPR_CRCPOLY_Field := 16#7#;
       --  unspecified
-      Reserved_16_31 : STM32F40x.Short := 16#0#;
+      Reserved_16_31 : HAL.UInt16 := 16#0#;
    end record
      with Volatile_Full_Access, Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -229,18 +179,14 @@ package STM32F40x.SPI is
       Reserved_16_31 at 0 range 16 .. 31;
    end record;
 
-   ---------------------
-   -- RXCRCR_Register --
-   ---------------------
-
-   subtype RXCRCR_RxCRC_Field is STM32F40x.Short;
+   subtype RXCRCR_RxCRC_Field is HAL.UInt16;
 
    --  RX CRC register
    type RXCRCR_Register is record
       --  Read-only. Rx CRC register
-      RxCRC          : RXCRCR_RxCRC_Field := 16#0#;
+      RxCRC          : RXCRCR_RxCRC_Field;
       --  unspecified
-      Reserved_16_31 : STM32F40x.Short;
+      Reserved_16_31 : HAL.UInt16;
    end record
      with Volatile_Full_Access, Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -250,18 +196,14 @@ package STM32F40x.SPI is
       Reserved_16_31 at 0 range 16 .. 31;
    end record;
 
-   ---------------------
-   -- TXCRCR_Register --
-   ---------------------
-
-   subtype TXCRCR_TxCRC_Field is STM32F40x.Short;
+   subtype TXCRCR_TxCRC_Field is HAL.UInt16;
 
    --  TX CRC register
    type TXCRCR_Register is record
       --  Read-only. Tx CRC register
-      TxCRC          : TXCRCR_TxCRC_Field := 16#0#;
+      TxCRC          : TXCRCR_TxCRC_Field;
       --  unspecified
-      Reserved_16_31 : STM32F40x.Short;
+      Reserved_16_31 : HAL.UInt16;
    end record
      with Volatile_Full_Access, Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -271,41 +213,32 @@ package STM32F40x.SPI is
       Reserved_16_31 at 0 range 16 .. 31;
    end record;
 
-   ----------------------
-   -- I2SCFGR_Register --
-   ----------------------
-
-   subtype I2SCFGR_CHLEN_Field is STM32F40x.Bit;
-   subtype I2SCFGR_DATLEN_Field is STM32F40x.UInt2;
-   subtype I2SCFGR_CKPOL_Field is STM32F40x.Bit;
-   subtype I2SCFGR_I2SSTD_Field is STM32F40x.UInt2;
-   subtype I2SCFGR_PCMSYNC_Field is STM32F40x.Bit;
-   subtype I2SCFGR_I2SCFG_Field is STM32F40x.UInt2;
-   subtype I2SCFGR_I2SE_Field is STM32F40x.Bit;
-   subtype I2SCFGR_I2SMOD_Field is STM32F40x.Bit;
+   subtype I2SCFGR_DATLEN_Field is HAL.UInt2;
+   subtype I2SCFGR_I2SSTD_Field is HAL.UInt2;
+   subtype I2SCFGR_I2SCFG_Field is HAL.UInt2;
 
    --  I2S configuration register
    type I2SCFGR_Register is record
       --  Channel length (number of bits per audio channel)
-      CHLEN          : I2SCFGR_CHLEN_Field := 16#0#;
+      CHLEN          : Boolean := False;
       --  Data length to be transferred
       DATLEN         : I2SCFGR_DATLEN_Field := 16#0#;
       --  Steady state clock polarity
-      CKPOL          : I2SCFGR_CKPOL_Field := 16#0#;
+      CKPOL          : Boolean := False;
       --  I2S standard selection
       I2SSTD         : I2SCFGR_I2SSTD_Field := 16#0#;
       --  unspecified
-      Reserved_6_6   : STM32F40x.Bit := 16#0#;
+      Reserved_6_6   : HAL.Bit := 16#0#;
       --  PCM frame synchronization
-      PCMSYNC        : I2SCFGR_PCMSYNC_Field := 16#0#;
+      PCMSYNC        : Boolean := False;
       --  I2S configuration mode
       I2SCFG         : I2SCFGR_I2SCFG_Field := 16#0#;
       --  I2S Enable
-      I2SE           : I2SCFGR_I2SE_Field := 16#0#;
+      I2SE           : Boolean := False;
       --  I2S mode selection
-      I2SMOD         : I2SCFGR_I2SMOD_Field := 16#0#;
+      I2SMOD         : Boolean := False;
       --  unspecified
-      Reserved_12_31 : STM32F40x.UInt20 := 16#0#;
+      Reserved_12_31 : HAL.UInt20 := 16#0#;
    end record
      with Volatile_Full_Access, Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -323,24 +256,18 @@ package STM32F40x.SPI is
       Reserved_12_31 at 0 range 12 .. 31;
    end record;
 
-   --------------------
-   -- I2SPR_Register --
-   --------------------
-
-   subtype I2SPR_I2SDIV_Field is STM32F40x.Byte;
-   subtype I2SPR_ODD_Field is STM32F40x.Bit;
-   subtype I2SPR_MCKOE_Field is STM32F40x.Bit;
+   subtype I2SPR_I2SDIV_Field is HAL.UInt8;
 
    --  I2S prescaler register
    type I2SPR_Register is record
       --  I2S Linear prescaler
       I2SDIV         : I2SPR_I2SDIV_Field := 16#A#;
       --  Odd factor for the prescaler
-      ODD            : I2SPR_ODD_Field := 16#0#;
+      ODD            : Boolean := False;
       --  Master clock output enable
-      MCKOE          : I2SPR_MCKOE_Field := 16#0#;
+      MCKOE          : Boolean := False;
       --  unspecified
-      Reserved_10_31 : STM32F40x.UInt22 := 16#0#;
+      Reserved_10_31 : HAL.UInt22 := 16#0#;
    end record
      with Volatile_Full_Access, Size => 32,
           Bit_Order => System.Low_Order_First;
@@ -359,56 +286,56 @@ package STM32F40x.SPI is
    --  Serial peripheral interface
    type SPI_Peripheral is record
       --  control register 1
-      CR1     : CR1_Register;
+      CR1     : aliased CR1_Register;
       --  control register 2
-      CR2     : CR2_Register;
+      CR2     : aliased CR2_Register;
       --  status register
-      SR      : SR_Register;
+      SR      : aliased SR_Register;
       --  data register
-      DR      : DR_Register;
+      DR      : aliased DR_Register;
       --  CRC polynomial register
-      CRCPR   : CRCPR_Register;
+      CRCPR   : aliased CRCPR_Register;
       --  RX CRC register
-      RXCRCR  : RXCRCR_Register;
+      RXCRCR  : aliased RXCRCR_Register;
       --  TX CRC register
-      TXCRCR  : TXCRCR_Register;
+      TXCRCR  : aliased TXCRCR_Register;
       --  I2S configuration register
-      I2SCFGR : I2SCFGR_Register;
+      I2SCFGR : aliased I2SCFGR_Register;
       --  I2S prescaler register
-      I2SPR   : I2SPR_Register;
+      I2SPR   : aliased I2SPR_Register;
    end record
      with Volatile;
 
    for SPI_Peripheral use record
-      CR1     at 0 range 0 .. 31;
-      CR2     at 4 range 0 .. 31;
-      SR      at 8 range 0 .. 31;
-      DR      at 12 range 0 .. 31;
-      CRCPR   at 16 range 0 .. 31;
-      RXCRCR  at 20 range 0 .. 31;
-      TXCRCR  at 24 range 0 .. 31;
-      I2SCFGR at 28 range 0 .. 31;
-      I2SPR   at 32 range 0 .. 31;
+      CR1     at 16#0# range 0 .. 31;
+      CR2     at 16#4# range 0 .. 31;
+      SR      at 16#8# range 0 .. 31;
+      DR      at 16#C# range 0 .. 31;
+      CRCPR   at 16#10# range 0 .. 31;
+      RXCRCR  at 16#14# range 0 .. 31;
+      TXCRCR  at 16#18# range 0 .. 31;
+      I2SCFGR at 16#1C# range 0 .. 31;
+      I2SPR   at 16#20# range 0 .. 31;
    end record;
 
    --  Serial peripheral interface
    I2S2ext_Periph : aliased SPI_Peripheral
-     with Import, Address => I2S2ext_Base;
-
-   --  Serial peripheral interface
-   SPI2_Periph : aliased SPI_Peripheral
-     with Import, Address => SPI2_Base;
-
-   --  Serial peripheral interface
-   SPI3_Periph : aliased SPI_Peripheral
-     with Import, Address => SPI3_Base;
+     with Import, Address => System'To_Address (16#40003400#);
 
    --  Serial peripheral interface
    I2S3ext_Periph : aliased SPI_Peripheral
-     with Import, Address => I2S3ext_Base;
+     with Import, Address => System'To_Address (16#40004000#);
 
    --  Serial peripheral interface
    SPI1_Periph : aliased SPI_Peripheral
-     with Import, Address => SPI1_Base;
+     with Import, Address => System'To_Address (16#40013000#);
 
-end STM32F40x.SPI;
+   --  Serial peripheral interface
+   SPI2_Periph : aliased SPI_Peripheral
+     with Import, Address => System'To_Address (16#40003800#);
+
+   --  Serial peripheral interface
+   SPI3_Periph : aliased SPI_Peripheral
+     with Import, Address => System'To_Address (16#40003C00#);
+
+end STM32_SVD.SPI;

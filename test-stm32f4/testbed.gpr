@@ -28,28 +28,15 @@ project Testbed is
 
    package Builder is
       for Global_Configuration_Pragmas use "gnat.adc";
-      for Global_Compilation_Switches ("ada") use
-        (
-         "-g",
-         "-O0",
-         "-ffunction-sections",
-         "-fdata-sections"
-        );
-      for Global_Compilation_Switches ("c") use
-        (
-         "-g",
-         "-O0",
-         "-ffunction-sections",
-         "-fdata-sections"
-        );
+      for Global_Compilation_Switches ("ada") use ("-g", "-O0", "-ffunction-sections", "-fdata-sections");
+      for Global_Compilation_Switches ("c") use ("-g", "-O0", "-ffunction-sections", "-fdata-sections");
       for Switches ("ada") use ("--create-map-file");
    end Builder;
 
    package Compiler is
       for Default_Switches ("c") use ("-g", "-O0");
       for Default_Switches ("ada") use ("-gnatqQafoy", "-gnatwaL.X");
-      for Switches ("last_chance_handler.adb") use
-        Compiler'Default_Switches ("ada") & "-O0";
+      for Switches ("last_chance_handler.adb") use Compiler'Default_Switches ("ada") & "-O0";
    end Compiler;
 
    package Linker is
@@ -57,10 +44,12 @@ project Testbed is
       for Map_File_Option use "-Wl,-Map," & project'Project_Dir;
    end Linker;
 
-   package IDE is
-      for Connection_Tool use "/usr/local/bin/st-util";
-      for Program_Host use "*:4242";
+   package Ide is
+      for Connection_Tool use "openocd";
+      for Program_Host use "localhost:3333";
       for Communication_Protocol use "remote";
-   end IDE;
+      for Connection_Config_File use "../../../../../usr/share/openocd/scripts/board/stm32f4discovery.cfg";
+   end Ide;
 
 end Testbed;
+
