@@ -1,6 +1,6 @@
-# This file is part of the Cortex GNAT RTS package.
+# Copyright (C) 2016 Free Software Foundation, Inc.
 #
-# Copyright (C) 2016, 2018 Free Software Foundation, Inc.
+# This file is part of the Cortex GNAT RTS package.
 #
 # The Cortex GNAT RTS package is free software; you can redistribute
 # it and/or modify it under the terms of the GNU General Public
@@ -12,19 +12,22 @@
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program; see the file COPYING3.  If not, see
-# <http://www.gnu.org/licenses/>.
+#  You should have received a copy of the GNU General Public License
+#  along with this program; see the file COPYING3.  If not, see
+#  <http://www.gnu.org/licenses/>.
 
-first:
-	@echo "\t'make all' to build the runtimes,"
-	@echo "\t'make install' to install the runtimes."
+all: testbed.bin
 
-runtimes = roswell
+testbed: force
+	gprbuild -p -P testbed
+clean::
+	gprclean -P testbed
 
-all install clean:
-	for f in $(runtimes); do		\
-	  make -w -C $$f $@;			\
-	done
+clean::
+	-rm *~ *.ali *.o *.bin
+	-rm -rf .build
 
-.PHONY: first all clean install
+%.bin: %
+	arm-eabi-objcopy -O binary $^ $@
+
+.PHONY: all clean force

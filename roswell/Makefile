@@ -1,6 +1,6 @@
-# This file is part of the Cortex GNAT RTS package.
-#
 # Copyright (C) 2016, 2018 Free Software Foundation, Inc.
+#
+# This file is part of the Cortex GNAT RTS package.
 #
 # The Cortex GNAT RTS package is free software; you can redistribute
 # it and/or modify it under the terms of the GNU General Public
@@ -13,18 +13,16 @@
 # GNU General Public License for more details.
 #
 # You should have received a copy of the GNU General Public License
-# along with this program; see the file COPYING3.  If not, see
+# along with this program; see the file COPYING3. If not, see
 # <http://www.gnu.org/licenses/>.
 
-first:
-	@echo "\t'make all' to build the runtimes,"
-	@echo "\t'make install' to install the runtimes."
+all:
+	gprbuild -p -P build_runtime.gpr
 
-runtimes = roswell
+install: all
+	gprinstall -p -P build_runtime.gpr -f
 
-all install clean:
-	for f in $(runtimes); do		\
-	  make -w -C $$f $@;			\
-	done
+clean:
+	gprclean -P build_runtime.gpr
 
-.PHONY: first all clean install
+.PHONY: all install clean
